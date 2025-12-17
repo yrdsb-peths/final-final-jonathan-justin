@@ -3,6 +3,7 @@ import greenfoot.*;
 public class MyWorld extends World {
     public MyWorld() {
         super(800, 600, 1, false);
-        addObject(new Player(), 26, getHeight() - 26);
+        Player player = new Player();
+        addObject(player, 26, getHeight() - 25);
     }
 }

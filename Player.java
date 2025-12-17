@@ -8,6 +8,54 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends Actor
 {
+    GreenfootImage[] idlePlayer = new GreenfootImage[4];
+    GreenfootImage[] movePlayerRight = new GreenfootImage[16];
+    GreenfootImage[] movePlayerLeft = new GreenfootImage[16];
+    
+    String facing = "right";
+    SimpleTimer animationTimer = new SimpleTimer();
+    
+    public Player()
+    {  
+        for(int i = 0; i < movePlayerRight.length; i++)
+        {
+            movePlayerRight[i] = new GreenfootImage("images/knight/knight" + i + ".png");
+            movePlayerRight[i].scale(50, 50);
+        }
+        
+        for(int i = 0; i < movePlayerLeft.length; i++)
+        {
+            movePlayerLeft[i] = new GreenfootImage("images/knight/knight" + i + ".png");
+            movePlayerLeft[i].mirrorHorizontally();
+            movePlayerLeft[i].scale(50, 50);
+        }
+        
+        animationTimer.mark();
+        
+        setImage(movePlayerRight[0]);
+    }
+    
+    int imageIndex = 0;
+    public void animatePlayer()
+    {
+        if(animationTimer.millisElapsed()<100)
+        {
+            return;
+        }
+        animationTimer.mark();
+        
+        if(facing.equals("right"))
+        {
+            setImage(movePlayerRight[imageIndex]);
+            imageIndex = (imageIndex + 1) % movePlayerRight.length;
+        }
+        else
+        {
+            setImage(movePlayerLeft[imageIndex]);
+            imageIndex = (imageIndex + 1) % movePlayerLeft.length;
+        }
+    }
+    
     static final int GRAVITY = 2;
     static final int JUMP_FORCE = 30;
     int xSpeed = 4;
@@ -16,6 +64,8 @@ public class Player extends Actor
     {
         moveHorizontal();
         moveVertically();
+        
+        animatePlayer();
     }
     
     private void moveHorizontal()
@@ -24,8 +74,16 @@ public class Player extends Actor
         int myWidth = getImage().getHeight();
         int dx = 0;
         
-        if(Greenfoot.isKeyDown("left")) dx--;
-        if(Greenfoot.isKeyDown("right")) dx++;
+        if(Greenfoot.isKeyDown("left"))
+        {
+            facing = "left";
+            dx--;
+        }
+        if(Greenfoot.isKeyDown("right"))
+        {
+            facing = "right";
+            dx++;
+        }
         
         setLocation(getX() + dx * xSpeed, getY());
         if(getX() < myWidth/2) setLocation(myWidth/2, getY());
