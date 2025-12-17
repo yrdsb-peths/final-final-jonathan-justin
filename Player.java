@@ -8,7 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends Actor
 {
-    GreenfootImage[] idlePlayer = new GreenfootImage[4];
+    GreenfootImage[] idlePlayerRight = new GreenfootImage[4];
+    GreenfootImage[] idlePlayerLeft = new GreenfootImage[4];
     GreenfootImage[] movePlayerRight = new GreenfootImage[16];
     GreenfootImage[] movePlayerLeft = new GreenfootImage[16];
     
@@ -30,34 +31,59 @@ public class Player extends Actor
             movePlayerLeft[i].scale(50, 50);
         }
         
-        animationTimer.mark();
-        
-        setImage(movePlayerRight[0]);
-    }
-    
-    int imageIndex = 0;
-    public void animatePlayer()
-    {
-        if(animationTimer.millisElapsed()<100)
+        for(int i = 0; i < idlePlayerRight.length; i++)
         {
-            return;
+            idlePlayerRight[i] = new GreenfootImage("images/idle_knight/idleknight" + i + ".png");
+            idlePlayerRight[i].scale(50, 50);
+        }
+        
+        for(int i = 0; i < idlePlayerLeft.length; i++)
+        {
+            idlePlayerLeft[i] = new GreenfootImage("images/idle_knight/idleknight" + i + ".png");
+            idlePlayerLeft[i].mirrorHorizontally();
+            idlePlayerLeft[i].scale(50, 50);
         }
         animationTimer.mark();
         
-        if(facing.equals("right"))
+        setImage(idlePlayerRight[0]);
+    }
+    
+    int walkIndex = 0;
+    int idleIndex = 0;
+    public void animatePlayer()
+    {
+        if(animationTimer.millisElapsed()<100) return;
+        animationTimer.mark();
+        
+        boolean moving = Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("left");
+        if (moving)
         {
-            setImage(movePlayerRight[imageIndex]);
-            imageIndex = (imageIndex + 1) % movePlayerRight.length;
+            if(facing.equals("right"))
+            {
+                setImage(movePlayerRight[walkIndex]);
+            }
+            else
+            {
+                setImage(movePlayerLeft[walkIndex]);
+            }
+            walkIndex = (walkIndex + 1) % movePlayerRight.length;
         }
         else
         {
-            setImage(movePlayerLeft[imageIndex]);
-            imageIndex = (imageIndex + 1) % movePlayerLeft.length;
+            if(facing.equals("right"))
+            {
+                setImage(idlePlayerRight[idleIndex]);
+            }
+            else
+            {
+                setImage(idlePlayerLeft[idleIndex]);
+            }
+            idleIndex = (idleIndex + 1) % idlePlayerRight.length;
         }
     }
     
     static final int GRAVITY = 2;
-    static final int JUMP_FORCE = 30;
+    static final int JUMP_FORCE = 26;
     int xSpeed = 4;
     int ySpeed = 0;
     public void act()
