@@ -21,27 +21,27 @@ public class Player extends Actor
         for(int i = 0; i < movePlayerRight.length; i++)
         {
             movePlayerRight[i] = new GreenfootImage("images/knight/knight" + i + ".png");
-            movePlayerRight[i].scale(50, 50);
+            movePlayerRight[i].scale(16, 16);
         }
         
         for(int i = 0; i < movePlayerLeft.length; i++)
         {
             movePlayerLeft[i] = new GreenfootImage("images/knight/knight" + i + ".png");
             movePlayerLeft[i].mirrorHorizontally();
-            movePlayerLeft[i].scale(50, 50);
+            movePlayerLeft[i].scale(16, 16);
         }
         
         for(int i = 0; i < idlePlayerRight.length; i++)
         {
             idlePlayerRight[i] = new GreenfootImage("images/idle_knight/idleknight" + i + ".png");
-            idlePlayerRight[i].scale(50, 50);
+            idlePlayerRight[i].scale(16, 16);
         }
         
         for(int i = 0; i < idlePlayerLeft.length; i++)
         {
             idlePlayerLeft[i] = new GreenfootImage("images/idle_knight/idleknight" + i + ".png");
             idlePlayerLeft[i].mirrorHorizontally();
-            idlePlayerLeft[i].scale(50, 50);
+            idlePlayerLeft[i].scale(16, 16);
         }
         animationTimer.mark();
         
@@ -82,9 +82,9 @@ public class Player extends Actor
         }
     }
     
-    static final int GRAVITY = 2;
-    static final int JUMP_FORCE = 26;
-    int xSpeed = 4;
+    static final int GRAVITY = 1;
+    static final int JUMP_FORCE = 11;
+    int xSpeed = 3;
     int ySpeed = 0;
     public void act()
     {
@@ -114,7 +114,7 @@ public class Player extends Actor
         setLocation(getX() + dx * xSpeed, getY());
         if(getX() < myWidth/2) setLocation(myWidth/2, getY());
         if(getX() > worldWidth-myWidth/2) setLocation(worldWidth - myWidth/2, getY());
-        while(getOneIntersectingObject(null) != null) setLocation(getX() - dx, getY());
+        while(getOneIntersectingObject(platforms1.class) != null||getOneIntersectingObject(platforms2.class) != null) setLocation(getX() - dx, getY() - 1);
     }
     
     private void moveVertically()
@@ -126,17 +126,19 @@ public class Player extends Actor
         ySpeed += GRAVITY;
         setLocation(getX(), getY() + ySpeed);
         
-        if(getY() > worldHeight - myHeight / 2)
+        Actor platform;
+        if((platform = getOneIntersectingObject(platforms1.class))!=null||(platform = getOneIntersectingObject(platforms2.class))!=null)
         {
-            setLocation(getX(), worldHeight - myHeight / 2);
-            ySpeed = 0;
-            onGround = true;
-        }
-        int dy = (int)Math.signum(ySpeed);
-        while(getOneIntersectingObject(null) != null)
-        {
-            setLocation(getX(), getY() - dy);
-            if(dy > 0) onGround = true;
+            if(ySpeed > 0)
+            {
+                setLocation(getX(), platform.getY()-platform.getImage().getHeight()/2-myHeight/2);
+                onGround = true;
+            }
+            else if (ySpeed < 0)
+            {
+                setLocation(getX(), platform.getY()+platform.getImage().getHeight()/2+myHeight/2);
+    
+            }
             ySpeed = 0;
         }
         if (onGround && Greenfoot.isKeyDown("up")) ySpeed = -JUMP_FORCE;
