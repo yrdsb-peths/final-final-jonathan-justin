@@ -9,12 +9,18 @@ public class MyWorld extends World {
         addPlayer();
         
         createPlatforms();
+        createPortal();
     }
     
     private void addPlayer()
     {
         Player player = new Player();
         addObject(player, 180, getHeight() - 25);
+    }
+    
+    private void createPortal()
+    {
+        addObject(new portal(), 56, 22);
     }
     
     private void createPlatforms()
