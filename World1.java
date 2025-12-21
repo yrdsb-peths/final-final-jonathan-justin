@@ -19,7 +19,7 @@ public class World1 extends World
         super(305, 400, 1, false); 
         setBackground("world1.png");
         
-        addObject(new portal(), 150, 200);
+        addObject(new portal(), 150, 200); // test portal
         
         prepare();
     }
