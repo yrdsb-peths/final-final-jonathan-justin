@@ -90,8 +90,8 @@ public class Player extends Actor
     {
         moveHorizontal();
         moveVertically();
-        
         animatePlayer();
+        teleport();
     }
     
     private void moveHorizontal()
@@ -100,12 +100,12 @@ public class Player extends Actor
         int myWidth = getImage().getHeight();
         int dx = 0;
         
-        if(Greenfoot.isKeyDown("left"))
+        if(Greenfoot.isKeyDown("left")||Greenfoot.isKeyDown("a"))
         {
             facing = "left";
             dx--;
         }
-        if(Greenfoot.isKeyDown("right"))
+        if(Greenfoot.isKeyDown("right")||Greenfoot.isKeyDown("d"))
         {
             facing = "right";
             dx++;
@@ -141,6 +141,35 @@ public class Player extends Actor
             }
             ySpeed = 0;
         }
-        if (onGround && Greenfoot.isKeyDown("up")) ySpeed = -JUMP_FORCE;
+        if (onGround && (Greenfoot.isKeyDown("up")||Greenfoot.isKeyDown("w")||Greenfoot.isKeyDown("space"))) ySpeed = -JUMP_FORCE;
+    }
+    
+    public void teleport()
+    {
+        if(!isTouching(portal.class)) return;
+        
+        World current = getWorld();
+        Player player = this;
+        
+        if (current instanceof World1)
+        {
+            Greenfoot.setWorld(new World2(player));
+        }
+        else if (current instanceof World2)
+        {
+            Greenfoot.setWorld(new World3(player));
+        }
+        else if (current instanceof World3)
+        {
+            Greenfoot.setWorld(new World4(player));
+        }
+        else if (current instanceof World4)
+        {
+            Greenfoot.setWorld(new World5(player));
+        }
+        else if (current instanceof World5)
+        {
+            Greenfoot.setWorld(new congradulations());
+        }
     }
 }
