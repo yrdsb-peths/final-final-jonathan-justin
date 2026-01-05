@@ -146,7 +146,7 @@ public class Player extends Actor
     
     public void teleport()
     {
-        if(!isTouching(portal.class)) return;
+        if(!isTouching(Portal.class)) return;
         
         World current = getWorld();
         Player player = this;

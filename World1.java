@@ -19,7 +19,7 @@ public class World1 extends World
         super(305, 400, 1, false); 
         setBackground("world1.png");
         
-        addObject(new portal(), 150, 200); // test portal
+        addObject(new Portal(), 150, 200); // test portal
         
         prepare();
     }
@@ -28,7 +28,8 @@ public class World1 extends World
     {
         Player player = new Player();
         addObject(player, 180, getHeight() - 25);
-        addObject(new portal(), 56, 22);
+        addObject(new Portal(), 56, 22);
+        addObject(new Coin(), 70, 22);
         for (int i = 0; i < 5; i++)
         {
             addObject(new platforms1(), 152 + i * 16, 394);
