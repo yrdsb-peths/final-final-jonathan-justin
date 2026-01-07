@@ -16,6 +16,8 @@ public class Player extends Actor
     String facing = "right";
     SimpleTimer animationTimer = new SimpleTimer();
     
+    int numOfCoins = 0;
+    
     public Player()
     {  
         for(int i = 0; i < movePlayerRight.length; i++)
@@ -169,7 +171,17 @@ public class Player extends Actor
         }
         else if (current instanceof World5)
         {
-            Greenfoot.setWorld(new congradulations());
+            Greenfoot.setWorld(new FinalWorld());
         }
+    }
+    
+    public void collectCoin()
+    {
+        if(!isTouching(Coin.class)) return;
+        
+        numOfCoins++;
+        Label coinNum = new Label("Coins: " + numOfCoins, 10);
+        
+        
     }
 }
