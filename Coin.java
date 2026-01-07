@@ -11,6 +11,12 @@ public class Coin extends Actor
     SimpleTimer animationTimer = new SimpleTimer();
     GreenfootImage[] coin = new GreenfootImage[10];
     
+    double velocityY = 0;
+    double gravity = 1;
+    boolean collected = false;
+    int lifeTimer = 30;
+    
+    
     public Coin()
     {
         for(int i = 0; i < coin.length; i++)
@@ -40,5 +46,27 @@ public class Coin extends Actor
     public void act()
     {
         animateCoin();
+        if(collected)
+        {
+            applyGravity();
+            lifeTimer--;
+            if(lifeTimer<=0)
+            {
+                getWorld().removeObject(this);
+            }
+        }
+    }
+    public void collect()
+    {
+        if(!collected)
+        {
+            collected = true;
+            velocityY = -8;
+        }
+    }
+    private void applyGravity()
+    {
+        velocityY += gravity;
+        setLocation(getX(), (int)(getY()+velocityY));
     }
 }
