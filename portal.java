@@ -10,8 +10,8 @@ public class Portal extends Actor
 {
     public Portal()
     {
-        GreenfootImage portal = new GreenfootImage("portal.png");
-        setImage(portal);
+        GreenfootImage Portal = new GreenfootImage("portal.png");
+        setImage(Portal);
     }
     
 }
