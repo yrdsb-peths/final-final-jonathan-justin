@@ -143,7 +143,12 @@ public class Player extends Actor
         }
         if (onGround && (Greenfoot.isKeyDown("up")||Greenfoot.isKeyDown("w")||Greenfoot.isKeyDown("space"))) ySpeed = -JUMP_FORCE;
     }
-    
+    public void collectCoin()
+    {
+        if(!isTouching(Coin.class)) return;
+        
+        
+    }
     public void teleport()
     {
         if(!isTouching(Portal.class)) return;

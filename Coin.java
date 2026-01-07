@@ -8,19 +8,37 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Coin extends Actor
 {
+    SimpleTimer animationTimer = new SimpleTimer();
+    GreenfootImage[] coin = new GreenfootImage[10];
+    
     public Coin()
     {
-        GreenfootImage coin = new GreenfootImage("coin.png");
-        setImage(coin);
+        for(int i = 0; i < coin.length; i++)
+        {
+            coin[i] = new GreenfootImage("images/spinning_coin/coin" + i + ".png");
+            coin[i].scale(20, 20);
+        }
+        animationTimer.mark();
+        
+        setImage(coin[0]);
     }
     
-    
+    int coinIndex = 0;
     /**
      * Act - do whatever the Coin wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public void act()
+    public void animateCoin()
     {
         // Add your action code here.
+        if(animationTimer.millisElapsed()<100) return;
+        animationTimer.mark();
+        setImage(coin[coinIndex]);
+        coinIndex = (coinIndex + 1) % coin.length;
+    }
+    
+    public void act()
+    {
+        animateCoin();
     }
 }
