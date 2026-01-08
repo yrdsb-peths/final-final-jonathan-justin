@@ -95,6 +95,7 @@ public class Player extends Actor
         animatePlayer();
         teleport();
         collectCoin();
+        checkVoid();
     }
     
     private void moveHorizontal()
@@ -174,14 +175,23 @@ public class Player extends Actor
             Greenfoot.setWorld(new FinalWorld());
         }
     }
+    private void checkVoid()
+    {
+        if(isTouching(theVoid.class))
+        {
+            SpawnPoint spawn = (SpawnPoint) getWorld().getObjects(SpawnPoint.class).get(0);
+            setLocation(spawn.getX(), spawn.getY());
+            ySpeed = 0;
+        }
+        
+    }
     private void collectCoin()
     {
-         Coin coin = (Coin) getOneIntersectingObject(Coin.class);
+        Coin coin = (Coin) getOneIntersectingObject(Coin.class);
         if (coin != null)
         {
             coin.collect();
             numOfCoins++;
         }
     }
-
 }

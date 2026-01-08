@@ -11,7 +11,7 @@ public class platforms2 extends Actor
     public platforms2()
     {
         GreenfootImage image = new GreenfootImage(16, 8);
-        image.setColor(Color.GREEN);
+        image.setColor(Color.BLUE);
         image.fill();
         setImage(image);
         //getImage().setTransparency(0);

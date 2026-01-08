@@ -21,7 +21,6 @@ public class World1 extends World
         
         addObject(new Portal(), 220, 365); // test portal
         
-        addObject(new Portal(), 150, 200); // test portal
         addObject(new PauseButton(), 10, 10);
         prepare();
     }
@@ -41,7 +40,7 @@ public class World1 extends World
         
         for (int i = 0; i < 2; i++)addObject(new platforms1(), 24, 298 - i * 16);
 
-        for (int i = 0; i < 3; i++)addObject(new platforms1(), 40 - i * 16, 314);
+        addObject(new platforms1(), 40, 314);
         
         for (int i = 0; i < 2; i++)addObject(new platforms1(), 56 + i * 16, 346);
         for (int i = 0; i < 2; i++)addObject(new platforms2(), 56 + i * 16, 150);

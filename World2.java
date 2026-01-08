@@ -25,11 +25,17 @@ public class World2 extends World
     
     private void prepare(Player player)
     {
-        addObject(player, 8, 40);
-        for(int i = 0; i < 50; i++)addObject(new platforms2(), 8+ 16 * i, 112);
-        for(int i = 0; i < 2; i++)addObject(new platforms2(), 16*i + 8, 86);
-        for(int i = 0; i < 2; i++)addObject(new platforms2(), 16* i + 72, 86);
-        for(int i = 0; i < 2; i++)addObject(new platforms2(), 16* i + 136, 86);
-        for(int i = 0; i < 2; i++)addObject(new platforms2(), 16* i + 200, 86);
+        addObject(player, 8, 56);
+        addObject(new Portal(), 792, 70);
+        addObject(new SpawnPoint(), 8, 56);
+        
+        for(int i = 0; i < 50; i++)addObject(new theVoid(), 8 + 16 * i, 119);
+        for(int i = 0; i < 50; i++)addObject(new platforms1(), 8 + 16 * i, 35);
+        
+        for(int i = 0; i < 6; i++)for(int x = 0; x < 2; x++)addObject(new platforms2(),8 + 16 * x + (64 * i), 86);
+        for(int i = 0; i < 3; i++)addObject(new platforms2(), 392 + 48 * i, 86);
+        for(int i = 0; i < 3; i++)addObject(new platforms2(), 520 + 32 * i, 86);
+        for(int i = 0; i < 3; i++)addObject(new platforms2(), 632 + 48 * i, 86);
+        for(int i = 0; i < 2; i++)addObject(new platforms2(), 792 - 16 * i, 86);
     }
 }
