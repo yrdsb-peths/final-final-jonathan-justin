@@ -20,7 +20,7 @@ public class World1 extends World
         setBackground("world1.png");
         
         addObject(new Portal(), 150, 200); // test portal
-        
+        addObject(new PauseButton(), 10, 10);
         prepare();
     }
     
