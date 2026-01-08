@@ -28,5 +28,8 @@ public class World2 extends World
         addObject(player, 8, 40);
         for(int i = 0; i < 50; i++)addObject(new platforms2(), 8+ 16 * i, 112);
         for(int i = 0; i < 2; i++)addObject(new platforms2(), 16*i + 8, 86);
+        for(int i = 0; i < 2; i++)addObject(new platforms2(), 16* i + 72, 86);
+        for(int i = 0; i < 2; i++)addObject(new platforms2(), 16* i + 136, 86);
+        for(int i = 0; i < 2; i++)addObject(new platforms2(), 16* i + 200, 86);
     }
 }

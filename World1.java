@@ -32,7 +32,6 @@ public class World1 extends World
         addObject(player, 180, getHeight() - 25);
         addObject(new Portal(), 56, 22);
         addObject(new Coin(), 70, 22);
-        addObject(new platforms2(), 8, 100);
         addObject(new Coin(), 8, 390);
         
         for (int i = 0; i < 2; i++)addObject(new platforms1(), 8, 266 - 16 * i);
