@@ -94,6 +94,7 @@ public class Player extends Actor
         moveVertically();
         animatePlayer();
         teleport();
+        collectCoin();
     }
     
     private void moveHorizontal()
