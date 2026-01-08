@@ -21,7 +21,8 @@ public class World1 extends World
         
         addObject(new Portal(), 220, 365); // test portal
         
-        
+        addObject(new Portal(), 150, 200); // test portal
+        addObject(new PauseButton(), 10, 10);
         prepare();
     }
     
