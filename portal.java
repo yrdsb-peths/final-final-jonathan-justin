@@ -13,5 +13,4 @@ public class Portal extends Actor
         GreenfootImage Portal = new GreenfootImage("portal.png");
         setImage(Portal);
     }
-    
 }
