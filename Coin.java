@@ -16,9 +16,12 @@ public class Coin extends Actor
     boolean collected = false;
     int lifeTimer = 30;
     
+    boolean visibleOnStart;
     
-    public Coin()
+    public Coin(boolean visibleOnStart)
     {
+        this.visibleOnStart = visibleOnStart;
+        
         for(int i = 0; i < coin.length; i++)
         {
             coin[i] = new GreenfootImage("images/spinning_coin/coin" + i + ".png");
@@ -27,6 +30,8 @@ public class Coin extends Actor
         animationTimer.mark();
         
         setImage(coin[0]);
+        
+        if(!visibleOnStart)getImage().setTransparency(0);
     }
     
     int coinIndex = 0;
@@ -39,8 +44,13 @@ public class Coin extends Actor
         // Add your action code here.
         if(animationTimer.millisElapsed()<100) return;
         animationTimer.mark();
+        
+        int currentTransparency = getImage().getTransparency();
+        
         setImage(coin[coinIndex]);
         coinIndex = (coinIndex + 1) % coin.length;
+        
+        getImage().setTransparency(currentTransparency);
     }
     
     public void act()
@@ -62,6 +72,7 @@ public class Coin extends Actor
         {
             collected = true;
             velocityY = -8;
+            getImage().setTransparency(255);
         }
     }
     private void applyGravity()
