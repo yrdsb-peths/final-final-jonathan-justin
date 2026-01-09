@@ -17,9 +17,7 @@ public class PauseButton extends Actor
         if (Greenfoot.mouseClicked(this))
         {
             World world = getWorld();
-            world.addObject(new PauseOverlay(), 
-            world.getWidth() / 2, 
-            world.getHeight() / 2);
+            world.addObject(new PauseOverlay(), world.getWidth() / 2, world.getHeight() / 2);
         }
     }
 }

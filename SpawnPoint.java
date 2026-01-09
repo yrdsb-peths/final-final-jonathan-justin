@@ -14,6 +14,6 @@ public class SpawnPoint extends Actor
         img.setColor(Color.YELLOW);
         img.fill();
         setImage(img);
-        //getImage().setTransparency(0);
+        getImage().setTransparency(0);
     }
 }

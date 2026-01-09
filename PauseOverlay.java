@@ -15,7 +15,7 @@ public class PauseOverlay extends Actor
         img.fillRect(0, 0, 400, 200);
 
         img.setColor(Color.WHITE);
-        img.drawString("i dont think the pause button lets you win\nmaybe try another button?\n Click anywhere to resume", 80, 100);
+        img.drawString("the pause button is broken\nmaybe try another button?\n Click anywhere to resume", 80, 100);
 
         setImage(img);
     }
