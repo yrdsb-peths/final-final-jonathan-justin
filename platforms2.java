@@ -14,6 +14,6 @@ public class platforms2 extends Actor
         image.setColor(Color.BLUE);
         image.fill();
         setImage(image);
-        getImage().setTransparency(0);
+        //getImage().setTransparency(0);
     }
 }

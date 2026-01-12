@@ -118,7 +118,7 @@ public class Player extends Actor
         setLocation(getX() + dx * xSpeed, getY());
         if(getX() < myWidth/2) setLocation(myWidth/2, getY());
         if(getX() > worldWidth-myWidth/2) setLocation(worldWidth - myWidth/2, getY());
-        while(getOneIntersectingObject(platforms1.class) != null||getOneIntersectingObject(platforms2.class) != null) setLocation(getX() - dx, getY() - 1);
+        while(getOneIntersectingObject(platforms1.class) != null||getOneIntersectingObject(platforms2.class) != null) setLocation(getX() - dx, getY());
     }
     
     private void moveVertically()
