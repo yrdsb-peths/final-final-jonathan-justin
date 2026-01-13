@@ -25,4 +25,20 @@ public class World4 extends World
     {
         addObject(player, 50, 50);
     }
+    private boolean resetting = false;
+    public void act()
+    {
+        if (Player.getDeath() && !resetting)
+        {
+            resetting = true;
+            removeObjects(getObjects(Coin.class));
+            Player player = getObjects(Player.class).get(0);
+            prepare(player);
+        }
+
+        if (!Player.getDeath())
+        {
+            resetting = false;
+        }
+    }
 }

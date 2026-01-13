@@ -17,7 +17,7 @@ public class Player extends Actor
     SimpleTimer animationTimer = new SimpleTimer();
     
     int numOfCoins = 0;
-    
+    static boolean isDying = false; 
     public Player()
     {  
         for(int i = 0; i < movePlayerRight.length; i++)
@@ -114,10 +114,10 @@ public class Player extends Actor
             collectCoin();
             checkVoid();
         }
-        
+        numOfCoins = Coin.coinCount();
         checkSpike();
         handleDeath();
-        getWorld().showText("Coins: " + Coin.coinCount(), getWorld().getWidth() - 60, 8);
+        getWorld().showText("Coins: " + numOfCoins, getWorld().getWidth() - 60, 8);
     }
     
     private void moveHorizontal()
@@ -175,7 +175,7 @@ public class Player extends Actor
         
         World current = getWorld();
         Player player = this;
-        
+        Coin.saveCoinCount();
         if (current instanceof World1)
         {
             Greenfoot.setWorld(new World2(player));
@@ -237,11 +237,19 @@ public class Player extends Actor
         }
     }
     
-    
+    public static boolean getDeath(){
+        return isDying;
+    }
     private void handleDeath()
     {
-        if(!dying) return;
-
+        if(!dying) {
+            isDying = false;
+            return;
+        }
+        isDying = true;
+        numOfCoins = Coin.savedCoins();
+        Coin.resetCheckpoint();
+        
         if(deathTimer.millisElapsed() >= DEATH_DELAY)
         {
             SpawnPoint spawn = (SpawnPoint) getWorld().getObjects(SpawnPoint.class).get(0);

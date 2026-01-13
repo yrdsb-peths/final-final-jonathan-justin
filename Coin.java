@@ -17,6 +17,7 @@ public class Coin extends Actor
     int lifeTimer = 30;
     static int numOfCoins=0;
     boolean visibleOnStart;
+    static int previousCoins = 0;
     
     public Coin(boolean visibleOnStart)
     {
@@ -52,12 +53,20 @@ public class Coin extends Actor
         
         getImage().setTransparency(currentTransparency);
     }
-    
+    public static void saveCoinCount(){
+        previousCoins = numOfCoins;
+    }
+    public static int savedCoins(){
+        return previousCoins;
+    }
     public static int coinCount(){
         return numOfCoins;
     }
     public static void reset(){
         numOfCoins = 0;
+    }
+    public static void resetCheckpoint(){
+        numOfCoins = previousCoins;
     }
     public void act()
     {

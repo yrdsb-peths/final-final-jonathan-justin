@@ -46,4 +46,20 @@ public class World2 extends World
         for(int i = 0; i < 3; i++)addObject(new platforms2(), 632 + 48 * i, 86);
         for(int i = 0; i < 2; i++)addObject(new platforms2(), 792 - 16 * i, 86);
     }
+    private boolean resetting = false;
+    public void act()
+    {
+        if (Player.getDeath() && !resetting)
+        {
+            resetting = true;
+            removeObjects(getObjects(Coin.class));
+            Player player = getObjects(Player.class).get(0);
+            prepare(player);
+        }
+
+        if (!Player.getDeath())
+        {
+            resetting = false;
+        }
+    }
 }
