@@ -31,12 +31,14 @@ public class World2 extends World
         addObject(new SpawnPoint(), 8, 56);
         addObject(new Coin(false), 272, 27);
         addObject(new PauseButton(), 8, 8);
-        
-        for(int i = 0; i < 50; i++)addObject(new theVoid(), 8 + 16 * i, 119);
-        for(int i = 0; i < 16; i++)addObject(new platforms1(), 8 + 16 * i, 40);
-        addObject(new platforms1(), 248, 24);
-        
-        for(int i = 0; i < 32; i++)addObject(new platforms1(), 300 + 16 * i, 40);
+        for(int i = 0; i < 29;i++)addObject(new Spike(), 8+16*i, 108);
+        for(int i = 0; i < 10; i++)addObject(new FakeSpike(), 472 + 16*i,108);
+        addObject(new Coin(true),536, 104);
+        for(int i = 0; i <12; i++)addObject(new Spike(), 632 + 16*i, 108);
+        for(int i = 0; i < 50; i++)addObject(new platforms1(), 8 + 16 * i, 119);
+        for(int i = 0; i < 16; i++)addObject(new platforms1(), 8 + 16 * i, 38);
+        addObject(new Coin(false), 8, 30);
+        for(int i = 0; i < 32; i++)addObject(new platforms1(), 300 + 16 * i, 38);
         addObject(new platforms1(), 300, 24);
 
         

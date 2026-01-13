@@ -62,6 +62,7 @@ public class World3 extends World
         for(int i = 0; i < 2; i++)for(int x = 0; x < 2; x++)addObject(new platforms1(), 216 + x * 16, 424 + i * 16);
         
         addObject(new platforms1(), 216, 104);
+        addObject(new Coin(false), 264, 392);
         
         for(int i = 0; i < 2; i++)addObject(new platforms1(), 248, 264 - i * 16);
         
@@ -83,13 +84,13 @@ public class World3 extends World
 
         for(int i = 0; i < 3; i++)addObject(new platforms1(), 344, 472 - i * 16);
         
-        for(int i = 0; i < 3; i++)addObject(new platforms1(), 360 + i * 16, 488);
+        for(int i = 0; i < 4; i++)addObject(new platforms1(), 344 + i * 16, 488);
         
         for(int i = 0; i < 2; i++)addObject(new platforms2(), 392 - i * 16, 166);
         
         addObject(new platforms2(), 408, 406);
         addObject(new platforms2(), 408, 118);
-        
+        addObject(new Coin(true), 420, 200);
         addObject(new platforms1(), 424, 312);
         addObject(new platforms2(), 424, 70);
         
@@ -97,6 +98,7 @@ public class World3 extends World
         
         for(int i = 0; i < 4; i++)addObject(new platforms1(), 504, 376 - i * 16);
         addObject(new platforms2(), 504, 246);
+        for(int i = 0; i < 7; i++)addObject(new Water(), 416+i*16, 488);
     }
     private boolean resetting = false;
     public void act()

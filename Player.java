@@ -293,7 +293,7 @@ public class Player extends Actor
         }
         else if (current instanceof World2)
         {
-            Greenfoot.setWorld(new FinalWorld(player));
+            Greenfoot.setWorld(new World3(player));
         }
         else if (current instanceof World3)
         {
