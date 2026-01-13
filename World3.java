@@ -24,9 +24,12 @@ public class World3 extends World
     private void prepare(Player player)
     {
         addObject(player, 50, 400);
+        addObject(new SpawnPoint(), 50, 400);
         addObject(new Coin(false), 24, 472);
         addObject(new Portal(), 504, 230);
         addObject(new PauseButton(), 10, 10);
+        addObject(new Spike(), 72, 488);
+        addObject(new Spike(), 120, 488);
     
         setBackground("world3Outside.png");
         for(int i = 0; i < 4; i++)addObject(new platforms1(), 8, 424 + i * 16);
