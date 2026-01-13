@@ -15,7 +15,7 @@ public class Coin extends Actor
     double gravity = 1;
     boolean collected = false;
     int lifeTimer = 30;
-    
+    static int numOfCoins=0;
     boolean visibleOnStart;
     
     public Coin(boolean visibleOnStart)
@@ -53,6 +53,10 @@ public class Coin extends Actor
         getImage().setTransparency(currentTransparency);
     }
     
+    public static int coinCount(){
+        return numOfCoins;
+    }
+    
     public void act()
     {
         animateCoin();
@@ -63,6 +67,7 @@ public class Coin extends Actor
             if(lifeTimer<=0)
             {
                 getWorld().removeObject(this);
+                numOfCoins++;
             }
         }
     }

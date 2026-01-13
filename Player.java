@@ -96,6 +96,8 @@ public class Player extends Actor
         teleport();
         collectCoin();
         checkVoid();
+        checkSpike();
+        getWorld().showText("Coins: " + Coin.coinCount(), getWorld().getWidth() - 60, 8);
     }
     
     private void moveHorizontal()
@@ -191,7 +193,13 @@ public class Player extends Actor
         if (coin != null)
         {
             coin.collect();
-            numOfCoins++;
         }
+    }
+    private void checkSpike()
+    {
+        if(!isTouching(Spike.class)) return;
+        SpawnPoint spawn = (SpawnPoint) getWorld().getObjects(SpawnPoint.class).get(0);
+        setLocation(spawn.getX(), spawn.getY());
+        ySpeed = 0;
     }
 }

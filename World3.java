@@ -27,6 +27,7 @@ public class World3 extends World
         addObject(new Coin(false), 24, 472);
         addObject(new Portal(), 504, 230);
         addObject(new PauseButton(), 10, 10);
+    
         setBackground("world3Outside.png");
         for(int i = 0; i < 4; i++)addObject(new platforms1(), 8, 424 + i * 16);
         for(int i = 0; i < 4; i++)addObject(new platforms1(), 8 + i * 16, 488);
