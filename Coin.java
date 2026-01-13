@@ -56,7 +56,9 @@ public class Coin extends Actor
     public static int coinCount(){
         return numOfCoins;
     }
-    
+    public static void reset(){
+        numOfCoins = 0;
+    }
     public void act()
     {
         animateCoin();
