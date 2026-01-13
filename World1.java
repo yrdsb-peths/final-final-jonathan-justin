@@ -34,13 +34,13 @@ public class World1 extends World
         addObject(new Coin(true), 8, 390);
         
         for (int i = 0; i < 2; i++)addObject(new platforms1(), 8, 266 - 16 * i);
-        for (int i = 0; i < 3; i++)addObject(new platforms1(), 8 + i * 16, getHeight()+7);
         addObject(new platforms2(), 8, 198);
         addObject(new platforms2(), 8, 150);
         
         for (int i = 0; i < 2; i++)addObject(new platforms1(), 24, 298 - i * 16);
 
         addObject(new platforms1(), 40, 314);
+        for(int i = 0; i < 3; i++)addObject(new platforms2(), 40 - i * 16, 392);
         
         for (int i = 0; i < 2; i++)addObject(new platforms1(), 56 + i * 16, 346);
         for (int i = 0; i < 2; i++)addObject(new platforms2(), 56 + i * 16, 150);
