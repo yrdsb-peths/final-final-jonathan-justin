@@ -28,11 +28,12 @@ public class World1 extends World
     private void prepare()
     {
         Player player = new Player();
+        addObject(new SpawnPoint(), 180, getHeight() - 25);
         addObject(player, 180, getHeight() - 25);
         addObject(new Portal(), 56, 22);
         addObject(new Coin(true), 70, 22);
         addObject(new Coin(true), 8, 390);
-        
+        addObject(new Spike(), 150, getHeight() - 25);
         for (int i = 0; i < 2; i++)addObject(new platforms1(), 8, 266 - 16 * i);
         addObject(new platforms2(), 8, 198);
         addObject(new platforms2(), 8, 150);

@@ -31,7 +31,6 @@ public class World2 extends World
         addObject(new SpawnPoint(), 8, 56);
         addObject(new Coin(false), 272, 27);
         addObject(new PauseButton(), 8, 8);
-        addObject(new Spike(), 30, 56);
         
         for(int i = 0; i < 50; i++)addObject(new theVoid(), 8 + 16 * i, 119);
         for(int i = 0; i < 16; i++)addObject(new platforms1(), 8 + 16 * i, 40);

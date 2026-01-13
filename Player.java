@@ -45,6 +45,19 @@ public class Player extends Actor
             idlePlayerLeft[i].mirrorHorizontally();
             idlePlayerLeft[i].scale(16, 16);
         }
+        
+        for(int i = 0; i < idleDeadRight.length; i++)
+        {
+            idleDeadRight[i] = new GreenfootImage("images/idle_knight_dead/idleknight" + i + ".png");
+            idleDeadRight[i].scale(16, 16);
+        }   
+        
+        for(int i = 0; i < idleDeadLeft.length; i++)
+        {
+            idleDeadLeft[i] = new GreenfootImage("images/idle_knight_dead/idleknight" + i + ".png");
+            idleDeadLeft[i].mirrorHorizontally();
+            idleDeadLeft[i].scale(16, 16);
+        }
         animationTimer.mark();
         
         setImage(idlePlayerRight[0]);
@@ -60,6 +73,7 @@ public class Player extends Actor
         boolean moving = Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("left");
         if (moving)
         {
+            idleIndex = 0;
             if(facing.equals("right"))
             {
                 setImage(movePlayerRight[walkIndex]);
@@ -72,6 +86,7 @@ public class Player extends Actor
         }
         else
         {
+            walkIndex = 0;
             if(facing.equals("right"))
             {
                 setImage(idlePlayerRight[idleIndex]);
@@ -90,13 +105,18 @@ public class Player extends Actor
     int ySpeed = 0;
     public void act()
     {
-        moveHorizontal();
-        moveVertically();
-        animatePlayer();
-        teleport();
-        collectCoin();
-        checkVoid();
+        if(!dying)
+        {
+            moveHorizontal();
+            moveVertically();
+            animatePlayer();
+            teleport();
+            collectCoin();
+            checkVoid();
+        }
+        
         checkSpike();
+        handleDeath();
         getWorld().showText("Coins: " + Coin.coinCount(), getWorld().getWidth() - 60, 8);
     }
     
@@ -195,11 +215,46 @@ public class Player extends Actor
             coin.collect();
         }
     }
+    boolean dying = false;
+    SimpleTimer deathTimer = new SimpleTimer();
+    static final int DEATH_DELAY = 500;
+    GreenfootImage[] idleDeadRight = new GreenfootImage[4];
+    GreenfootImage[] idleDeadLeft = new GreenfootImage[4];
+    
     private void checkSpike()
     {
-        if(!isTouching(Spike.class)) return;
-        SpawnPoint spawn = (SpawnPoint) getWorld().getObjects(SpawnPoint.class).get(0);
-        setLocation(spawn.getX(), spawn.getY());
-        ySpeed = 0;
+        if(dying) return;
+        if(isTouching(Spike.class))
+        {
+            dying = true;
+            deathTimer.mark();
+            ySpeed = 0;
+            
+            int frame = (idleIndex - 1 + idleDeadRight.length) % idleDeadRight.length;
+            
+            if(facing.equals("right")) setImage(idleDeadRight[frame]);
+            else setImage(idleDeadLeft[frame]);
+        }
+    }
+    
+    
+    private void handleDeath()
+    {
+        if(!dying) return;
+
+        if(deathTimer.millisElapsed() >= DEATH_DELAY)
+        {
+            SpawnPoint spawn = (SpawnPoint) getWorld().getObjects(SpawnPoint.class).get(0);
+            setLocation(spawn.getX(), spawn.getY());
+            ySpeed = 0;
+            dying = false;
+            
+            idleIndex = 0;
+            walkIndex = 0;
+            animationTimer.mark();
+            
+            if(facing.equals("right"))setImage(idlePlayerRight[0]);
+            else setImage(idlePlayerLeft[0]);
+        }
     }
 }
