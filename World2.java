@@ -18,7 +18,7 @@ public class World2 extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(801, 112, 1, false); 
         
-        //addObject(new Portal(), 64, 70);
+        addObject(new Portal(), 64, 70);
         setBackground("world2.png");
         
         prepare(player);

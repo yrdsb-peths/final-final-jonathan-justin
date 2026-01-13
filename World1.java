@@ -33,7 +33,6 @@ public class World1 extends World
         addObject(player, 180, getHeight() - 25);
         addObject(new Portal(), 56, 22);
         addObject(new Coin(false), 8, 390);
-        addObject(new Spike(), 150, 375);
         addObject(new Coin(true), 74, 22);
         addObject(new Coin(true), 299, 200);
         
