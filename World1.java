@@ -23,6 +23,7 @@ public class World1 extends World
         
         addObject(new PauseButton(), 8, 8);
         prepare();
+        Coin.reset();
     }
     
     private void prepare()
@@ -34,6 +35,10 @@ public class World1 extends World
         addObject(new Coin(true), 70, 22);
         addObject(new Coin(true), 8, 390);
         addObject(new Spike(), 150, getHeight() - 25);
+        addObject(new Coin(true), 74, 22);
+        addObject(new Coin(false), 8, 390);
+        addObject(new Coin(true), 299, 200);
+        
         for (int i = 0; i < 2; i++)addObject(new platforms1(), 8, 266 - 16 * i);
         addObject(new platforms2(), 8, 198);
         addObject(new platforms2(), 8, 150);
