@@ -103,27 +103,138 @@ public class Player extends Actor
     static final int JUMP_FORCE = 11;
     int xSpeed = 3;
     int ySpeed = 0;
+    int numOfDeaths = 0;
     public void act()
     {
         if(!dying)
         {
-            moveHorizontal();
-            moveVertically();
+            if(touchingWater){
+                swimMove();
+            }
+            else{
+                moveHorizontal();
+                moveVertically(); 
+            }
             animatePlayer();
             teleport();
             collectCoin();
             checkVoid();
         }
+        checkWater();
         numOfCoins = Coin.coinCount();
         checkSpike();
         handleDeath();
-        getWorld().showText("Coins: " + numOfCoins, getWorld().getWidth() - 60, 8);
+        if(getWorld() instanceof FinalWorld){
+            getWorld().showText("Congratulations for beating the game!", 200, 30);
+            getWorld().showText("Stats: ", 200, 64);
+            getWorld().showText("Coins Collected: " + numOfCoins + "/15", 200, 100);
+            getWorld().showText("Deaths: "+numOfDeaths, 200, 130);
+        }
+        else{
+            getWorld().showText("Coins: " + numOfCoins, getWorld().getWidth() - 60, 8);
+        }
     }
+    private double swimVX = 0;
+    private double swimVY = 0;
+    private double swimAccel = 0.25; 
+    private double swimMax = 3.0;  
+    private double swimDrag = 0.90;
+    private double buoyancy = 0.05;
+    int stepX = (int) Math.signum(swimVX);
+    int stepY = (int) Math.signum(swimVY);
     
+    private void swimMove()
+    {
+        int worldWidth = getWorld().getWidth();
+        int worldHeight = getWorld().getHeight();
+        int myWidth = getImage().getWidth();
+        int myHeight = getImage().getHeight();
+        int stepX = (int) Math.signum(swimVX);
+        int stepY = (int) Math.signum(swimVY);
+        // input keys
+        if (Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a"))
+        {
+            facing = "left";
+            swimVX -= swimAccel;
+        }
+        if (Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d"))
+        {
+            facing = "right";
+            swimVX += swimAccel;
+        }
+        if (Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("w"))
+        {
+            swimVY -= swimAccel;
+        }
+        if (Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("s"))
+        {
+            swimVY += swimAccel;
+        }
+    
+        // add bouyancy
+        swimVY += buoyancy;
+    
+        // prevent speed from going too high
+        if (swimVX > swimMax) swimVX = swimMax;
+        if (swimVX < -swimMax) swimVX = -swimMax;
+        if (swimVY > swimMax) swimVY = swimMax;
+        if (swimVY < -swimMax) swimVY = -swimMax;
+    
+        // add drag to speed
+        swimVX *= swimDrag;
+        swimVY *= swimDrag;
+    
+        setLocation((int)(getX() + swimVX), getY());
+
+        if (isTouching(platforms1.class) || isTouching(platforms2.class)) {
+            setLocation(getX() - (int)Math.signum(swimVX), getY());
+            swimVX = 0;
+        }
+        
+        setLocation(getX(), (int)(getY() + swimVY));
+        
+        if (isTouching(platforms1.class) || isTouching(platforms2.class)) {
+            setLocation(getX(), getY() - (int)Math.signum(swimVY));
+            swimVY = 0;
+        }
+        
+        if (getX() < myWidth / 2)
+        {
+            setLocation(myWidth / 2, getY());
+            swimVX = 0;
+        }
+        if (getX() > worldWidth - myWidth / 2)
+        {
+            setLocation(worldWidth - myWidth / 2, getY());
+            swimVX = 0;
+        }
+        if (getY() < myHeight / 2)
+        {
+            setLocation(getX(), myHeight / 2);
+            swimVY = 0;
+        }
+        if (getY() > worldHeight - myHeight / 2)
+        {
+            setLocation(getX(), worldHeight - myHeight / 2);
+            swimVY = 0;
+        }
+    
+        
+        /*if (isTouching(platforms1.class) || isTouching(platforms2.class)) {
+            setLocation(getX() - stepX, getY());
+            swimVX = 0;
+        }
+        
+        if (isTouching(platforms1.class) || isTouching(platforms2.class)) {
+            setLocation(getX(), getY() - stepY);
+            swimVY = 0;
+        }*/
+    }
+
     private void moveHorizontal()
     {
         int worldWidth = getWorld().getWidth();
-        int myWidth = getImage().getHeight();
+        int myWidth = getImage().getWidth();
         int dx = 0;
         
         if(Greenfoot.isKeyDown("left")||Greenfoot.isKeyDown("a"))
@@ -182,7 +293,7 @@ public class Player extends Actor
         }
         else if (current instanceof World2)
         {
-            Greenfoot.setWorld(new World3(player));
+            Greenfoot.setWorld(new FinalWorld(player));
         }
         else if (current instanceof World3)
         {
@@ -194,7 +305,7 @@ public class Player extends Actor
         }
         else if (current instanceof World5)
         {
-            Greenfoot.setWorld(new FinalWorld());
+            Greenfoot.setWorld(new FinalWorld(player));
         }
     }
     private void checkVoid()
@@ -236,6 +347,17 @@ public class Player extends Actor
             else setImage(idleDeadLeft[frame]);
         }
     }
+    boolean touchingWater = false;
+    private void checkWater()
+    {
+        if(isTouching(Water.class))
+        {
+            touchingWater= true;
+        }
+        else{
+            touchingWater = false;
+        }
+    }
     
     public static boolean getDeath(){
         return isDying;
@@ -249,7 +371,6 @@ public class Player extends Actor
         isDying = true;
         numOfCoins = Coin.savedCoins();
         Coin.resetCheckpoint();
-        
         if(deathTimer.millisElapsed() >= DEATH_DELAY)
         {
             SpawnPoint spawn = (SpawnPoint) getWorld().getObjects(SpawnPoint.class).get(0);
@@ -260,7 +381,7 @@ public class Player extends Actor
             idleIndex = 0;
             walkIndex = 0;
             animationTimer.mark();
-            
+            numOfDeaths++;
             if(facing.equals("right"))setImage(idlePlayerRight[0]);
             else setImage(idlePlayerLeft[0]);
         }
