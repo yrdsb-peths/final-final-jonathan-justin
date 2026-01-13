@@ -98,4 +98,20 @@ public class World3 extends World
         for(int i = 0; i < 4; i++)addObject(new platforms1(), 504, 376 - i * 16);
         addObject(new platforms2(), 504, 246);
     }
+    private boolean resetting = false;
+    public void act()
+    {
+        if (Player.getDeath() && !resetting)
+        {
+            resetting = true;
+            removeObjects(getObjects(Coin.class));
+            Player player = getObjects(Player.class).get(0);
+            prepare(player);
+        }
+
+        if (!Player.getDeath())
+        {
+            resetting = false;
+        }
+    }
 }
