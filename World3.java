@@ -17,7 +17,7 @@ public class World3 extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(513, 512, 1, false);
-        
+        addObject(new Portal(), 0, 400);
         prepare(player);
     }
     
@@ -70,13 +70,13 @@ public class World3 extends World
         for(int i = 0; i < 2; i++)addObject(new platforms1(), 264 - i * 16, 408);
         for(int i = 0; i < 2; i++)addObject(new platforms1(), 264, 280 - i * 16);
         
-        for(int i = 0; i < 3; i++)addObject(new platforms1(), 280 + i * 16, 456);
         for(int i = 0; i < 2; i++)addObject(new platforms1(), 280, 376 + i * 16);
         for(int i = 0; i < 2; i++)addObject(new platforms1(), 280, 296 - i * 16);
         for(int i = 0; i < 2; i++)addObject(new platforms2(), 280 + i * 16, 166);
         
         for(int i = 0; i < 2; i++)addObject(new platforms1(), 296, 312 - i * 16);
-        
+        for(int i = 0; i < 2; i++)addObject(new platforms1(), 296 + i * 16, 456);
+
         for(int i = 0; i < 2; i++)addObject(new platforms1(), 312, 328 - i * 16);
 
         addObject(new platforms1(), 328, 440);
@@ -90,7 +90,10 @@ public class World3 extends World
         
         addObject(new platforms2(), 408, 406);
         addObject(new platforms2(), 408, 118);
+        for(int i = 0; i < 7; i++)addObject(new Water(), 408 + i * 16, 488);
+
         addObject(new Coin(true), 420, 200);
+        
         addObject(new platforms1(), 424, 312);
         addObject(new platforms2(), 424, 70);
         
@@ -98,7 +101,7 @@ public class World3 extends World
         
         for(int i = 0; i < 4; i++)addObject(new platforms1(), 504, 376 - i * 16);
         addObject(new platforms2(), 504, 246);
-        for(int i = 0; i < 7; i++)addObject(new Water(), 416+i*16, 488);
+        
     }
     private boolean resetting = false;
     public void act()
