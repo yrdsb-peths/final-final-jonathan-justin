@@ -39,20 +39,20 @@ public class World2 extends World
     //basic level needs
     private void addBasics()
     {
-        addObject(new Portal(), 792, 70);
         addObject(new SpawnPoint(), 8, 56);
         addObject(new PauseButton(), 10, 10);
+        addObject(new Portal(), 792, 70);
     }
     
-    //adds secret coins to the level
+    //adds secret coins to the level (L - R)
     private void addCoins()
     {
+        addObject(new Coin(false), 8, 30);
         addObject(new Coin(false), 272, 27);
         addObject(new Coin(true),536, 104);
-        addObject(new Coin(false), 8, 30);
     }
     
-    //creates the platforms for the player to jump on
+    //creates the platforms for the player to jump on (L - R)
     private void addPlatforms()
     {
         for(int i = 0; i < 6; i++)for(int x = 0; x < 2; x++)addObject(new platforms2(),8 + 16 * x + (64 * i), 86);
@@ -62,7 +62,7 @@ public class World2 extends World
         for(int i = 0; i < 2; i++)addObject(new platforms2(), 792 - 16 * i, 86);
     }
     
-    //creates the floor and ceiling of the map
+    //creates the floor and ceiling of the map (L - R)
     private void addTopAndBottom()
     {
         for(int i = 0; i < 50; i++)addObject(new platforms1(), 8 + 16 * i, 119);
@@ -71,7 +71,7 @@ public class World2 extends World
         addObject(new platforms1(), 300, 24);
     }
     
-    //add the bottom row of spikes
+    //add the bottom row of spikes (L - R)
     private void addSpikes()
     {
         for(int i = 0; i < 29;i++)addObject(new Spike(), 8+16*i, 108);

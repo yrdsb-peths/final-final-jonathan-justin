@@ -104,6 +104,7 @@ public class World3 extends World
         
     }
     
+    //adds secret coins (L - R)
     private void addCoins()
     {
         addObject(new Coin(false), 24, 472);
