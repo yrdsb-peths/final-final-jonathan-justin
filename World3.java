@@ -25,7 +25,9 @@ public class World3 extends World
     {
         addObject(player, 50, 400);
         addObject(new SpawnPoint(), 50, 400);
-        addObject(new Coin(false), 24, 472);
+        
+        addCoins();
+
         addObject(new Portal(), 504, 230);
         addObject(new PauseButton(), 10, 10);
         addObject(new Spike(), 72, 490);
@@ -62,7 +64,6 @@ public class World3 extends World
         for(int i = 0; i < 2; i++)for(int x = 0; x < 2; x++)addObject(new platforms1(), 216 + x * 16, 424 + i * 16);
         
         addObject(new platforms1(), 216, 104);
-        addObject(new Coin(false), 264, 392);
         
         for(int i = 0; i < 2; i++)addObject(new platforms1(), 248, 264 - i * 16);
         
@@ -92,7 +93,6 @@ public class World3 extends World
         addObject(new platforms2(), 408, 118);
         for(int i = 0; i < 7; i++)addObject(new Water(), 408 + i * 16, 488);
 
-        addObject(new Coin(true), 420, 200);
         
         addObject(new platforms1(), 424, 312);
         addObject(new platforms2(), 424, 70);
@@ -102,6 +102,13 @@ public class World3 extends World
         for(int i = 0; i < 4; i++)addObject(new platforms1(), 504, 376 - i * 16);
         addObject(new platforms2(), 504, 246);
         
+    }
+    
+    private void addCoins()
+    {
+        addObject(new Coin(false), 24, 472);
+        addObject(new Coin(false), 264, 392);
+        addObject(new Coin(true), 420, 200);
     }
     
     //reset world if player dies

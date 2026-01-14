@@ -20,7 +20,7 @@ public class World4 extends World
         super(1537, 608, 1, false); 
         setBackground("world4.png");
         
-        //addObject(new Portal(), 130, 260);//test portal
+        addObject(new Portal(), 130, 260);//test portal
         
         prepare(player);
     }
@@ -34,7 +34,8 @@ public class World4 extends World
         addObject(new Coin(false), 1160, 392);
         addObject(new Coin(false), 632, 120);
         addObject(new Coin(false), 1320, 344);
-        
+        addObject(new PauseButton(), 10, 10);
+
         addObject(new Spike(), 1190, 234);
         
         addLand();

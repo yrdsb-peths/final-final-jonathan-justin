@@ -19,6 +19,8 @@ public class World5 extends World
         super(785, 448, 1, false); 
         setBackground("world5.png");
         
+        addObject(new Portal(), 560, 300);
+        
         prepare(player);
     }
     
@@ -29,6 +31,7 @@ public class World5 extends World
         addObject(new Portal(), 168, 184);
         addObject(new Coin(false), 536, 408);
         addObject(new Coin(true), 404, 134);
+        addObject(new PauseButton(), 10, 10);
         
         
         for(int i = 0; i < 5; i++)addObject(new platforms1(), 8 + i * 16, 56);

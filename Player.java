@@ -281,7 +281,7 @@ public class Player extends Actor
     {
         boolean nowTouching = isTouching(Water.class);
         
-        if(touchingWater && !nowTouching) ySpeed = -4;
+        if(touchingWater && !nowTouching) ySpeed = -8;
         touchingWater = nowTouching;
     }
     
