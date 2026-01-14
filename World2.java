@@ -19,7 +19,7 @@ public class World2 extends World
         super(801, 112, 1, false); 
         setBackground("world2.png");
         
-        addObject(new Portal(), 70, 70);//test portal
+        addObject(new Portal(), 64, 70);//test portal
         
         prepare(player);
     }
@@ -31,9 +31,14 @@ public class World2 extends World
         addBasics();
         
         addCoins();
+        addGround();
+        addSpikes();        
+    }
+    
+    private void addGround()
+    {
         addPlatforms();
         addTopAndBottom();
-        addSpikes();        
     }
     
     //basic level needs
