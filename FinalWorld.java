@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class FinalWorld extends World
 {
-    private GreenfootSound music = new GreenfootSound("world1.mp3");
+    private GreenfootSound music = new GreenfootSound("finalworld.mp3");
     /**
      * Constructor for objects of class FinalWorld.
      * 
