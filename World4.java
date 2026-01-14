@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class World4 extends World
 {
     private boolean resetting = false;
+    
     /**
      * Constructor for objects of class World4.
      * 
@@ -26,7 +27,6 @@ public class World4 extends World
     
     private void prepare(Player player)
     {
-        //add starting objects
         addObject(new SpawnPoint(), 160, 260);
         addObject(player, 160, 260); 
         addObject(new Portal(), 1528, 248);
@@ -35,10 +35,30 @@ public class World4 extends World
         addObject(new Coin(false), 632, 120);
         addObject(new Coin(false), 1320, 344);
         
-        //add anti-cheese
         addObject(new Spike(), 1190, 234);
         
-        //add first island
+        addLand();
+        addWater();
+    }
+    
+    private void addLand()
+    {
+        startingIsland();
+        cornerIsland();
+        middleIslandBottom();
+        middleIslandTop();
+        finalIsland();
+        iceberg();
+    }
+    
+    private void addWater()
+    {
+        openWater();
+        tunnelWater();
+    }
+    
+    private void startingIsland()
+    {
         for(int i = 0; i<13;i++) addObject(new platforms1(), 120 + i*16, 280);
         addObject(new platforms1(), 120, 296);
         addObject(new platforms1(), 136, 328);
@@ -52,9 +72,224 @@ public class World4 extends World
         for(int i = 0; i<3; i++) addObject(new platforms1(), 280 + i*16, 328);
         for(int i = 0; i<2; i++) addObject(new platforms1(), 312 + i*16, 296);
         addObject(new platforms1(), 312, 312);
+    }
+    
+    private void cornerIsland()
+    {
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 8 + i*16, 504);
+        addObject(new platforms1(), 40, 520);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 56 + i*16, 536);
+        for(int i = 0; i<6; i++) addObject(new platforms1(), 88 + i*16, 552);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 184 + i*16, 568);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 232 + i*16, 584);
+        addObject(new platforms1(), 264, 600);
+    }
+    
+    private void middleIslandBottom()
+    {
+        for(int i = 0; i<5; i++) addObject(new platforms1(), 440 + i*16, 600);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 504 + i*16, 584);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 536 + i*16, 568);
+        for(int i = 0; i<4; i++) addObject(new platforms1(), 568 + i*16, 552);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 616 + i*16, 536);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 648 + i*16, 520);
+        for(int i = 0; i<8; i++) addObject(new platforms1(), 680 + i*16, 504);
+        for(int i = 0; i<5; i++) addObject(new platforms1(), 792 + i*16, 520);
+        for(int i = 0; i < 3; i++)addObject(new platforms1(), 856, 504 - i * 16);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 856 + i*16, 456);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 872 + i*16, 440);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 872 + i*16, 424);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 888 + i*16, 408);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 904 + i*16, 392);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 904 + i*16, 376);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 920 + i*16, 360);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 936 + i*16, 344);
+        addObject(new platforms1(), 952, 328);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 952 + i*16, 312);
+        addObject(new platforms1(), 968, 296);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 968 + i*16, 280);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 984 + i*16, 264);
+        for(int i = 0; i<7; i++) addObject(new platforms1(), 1000 + i*16, 248);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1096 + i*16, 264);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1080 + i*16, 280);
+        for(int i = 0; i<5; i++) addObject(new platforms1(), 1016 + i*16, 296);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1000 + i*16, 312);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 984 + i*16, 328);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 968 + i*16, 344);
+        for(int i = 0; i < 2; i++)addObject(new platforms1(), 968, 360 + i * 16);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 952 + i*16, 392);
+        addObject(new platforms1(), 952, 408);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 936 + i*16, 424);
+        addObject(new platforms1(), 936, 440);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 920 + i*16, 456);
+        for(int i = 0; i < 3; i++)addObject(new platforms1(), 920, 472 + i * 16);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 920 + i*16, 520);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 952 + i*16, 536);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 968 + i*16, 552);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 984 + i*16, 568);
+        for(int i = 0; i<7; i++) addObject(new platforms1(), 1016 + i*16, 584);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1112 + i*16, 568);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1144 + i*16, 552);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1160 + i*16, 536);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1192 + i*16, 520);
+        addObject(new platforms1(), 1192, 552);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1192 + i*16, 568);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1208 + i*16, 584);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1224 + i*16, 600);
+        addObject(new platforms1(), 1240, 616);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1208 + i*16, 504);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1240 + i*16, 488);
+        for(int i = 0; i < 2; i++)addObject(new platforms1(), 1240, 472 - i * 16);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1240 + i*16, 440);
+        for(int i = 0; i<7; i++) addObject(new platforms1(), 1144 + i*16, 424);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1160 + i*16, 440);
+        for(int i = 0; i<5; i++) addObject(new platforms1(), 1096 + i*16, 408);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1080 + i*16, 424);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1064 + i*16, 440);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1064 + i*16, 456);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1048 + i*16, 472);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1112 + i*16, 392);
+        addObject(new platforms1(), 1144, 376);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1160 + i*16, 360);
+        for(int i = 0; i<8; i++) addObject(new platforms1(), 1192 + i*16, 344);
+        for(int i = 0; i<8; i++) addObject(new platforms1(), 1224 + i*16, 328);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1288 + i*16, 360);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1304 + i*16, 376);
+        for(int i = 0; i < 3; i++)addObject(new platforms1(), 1320, 392 + i * 16);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1304 + i*16, 440);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1304 + i*16, 456);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1288 + i*16, 472);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1288 + i*16, 488);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1304 + i*16, 504);
+        for(int i = 0; i<4; i++) addObject(new platforms1(), 1272 + i*16, 520);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1288 + i*16, 536);
+        for(int i = 0; i<4; i++) addObject(new platforms1(), 1240 + i*16, 552);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1256 + i*16, 568);
+        addObject(new platforms1(), 1272, 584);
+        addObject(new platforms1(), 1352, 344);
+        addObject(new platforms1(), 1368, 360);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1368 + i*16, 376);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1352 + i*16, 392);
+        for(int i = 0; i<4; i++) addObject(new platforms1(), 1352 + i*16, 408);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1368 + i*16, 424);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1384 + i*16, 440);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1400 + i*16, 456);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1400 + i*16, 472);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1416 + i*16, 488);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1416 + i*16, 504);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1416 + i*16, 520);
+        addObject(new platforms1(), 1432, 536);
+    }
+    
+    private void middleIslandTop()
+    {
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1352 + i*16, 552);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1368 + i*16, 568);
+        for(int i = 0; i<6; i++) addObject(new platforms1(), 1384 + i*16, 584);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1464 + i*16, 568);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1496 + i*16, 552);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1496 + i*16, 536);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1496 + i*16, 520);
+        addObject(new platforms1(), 1496, 504);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1480 + i*16, 488);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1480 + i*16, 472);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1480 + i*16, 456);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1480 + i*16, 440);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1464 + i*16, 424);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1464 + i*16, 408);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1448 + i*16, 392);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1448 + i*16, 376);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1432 + i*16, 360);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1416 + i*16, 344);
+        addObject(new platforms1(), 1416, 328);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1384 + i*16, 312);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1368 + i*16, 296);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1336 + i*16, 280);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1336 + i*16, 264);
+        for(int i = 0; i<11; i++) addObject(new platforms1(), 1192 + i*16, 248);
+        for(int i = 0; i<7; i++) addObject(new platforms1(), 1240 + i*16, 232);
+        for(int i = 0; i<6; i++) addObject(new platforms1(), 1192 + i*16, 264);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1192 + i*16, 280);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1160 + i*16, 296);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1144 + i*16, 312);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1112 + i*16, 328);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1080 + i*16, 344);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1064 + i*16, 360);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1048 + i*16, 376);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1032 + i*16, 392);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1016 + i*16, 408);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1000 + i*16, 424);
+        for(int i = 0; i < 4; i++)addObject(new platforms1(), 1000, 440 + i * 16);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1000 + i*16, 504);
+        for(int i = 0; i<7; i++) addObject(new platforms1(), 1016 + i*16, 520);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1112 + i*16, 504);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1128 + i*16, 488);
+        for(int i = 0; i<4; i++) addObject(new platforms1(), 1160 + i*16, 472);
+        addObject(new platforms1(), 1208, 456);
+        for(int i = 0; i < 2; i++)addObject(new platforms1(), 1128, 472 - i * 16);
+    }
+    
+    private void finalIsland()
+    {
+        addObject(new platforms1(),1528,344);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1496 + i*16, 328);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1480 + i*16, 312);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1464 + i*16, 296);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1432 + i*16, 280);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 1432 + i*16, 264);
+        for(int i = 0; i<4; i++) addObject(new platforms1(), 1448 + i*16, 248);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 1496 + i*16, 264);
+    }
+    
+    private void iceberg()
+    {
+        for(int i = 0; i<3; i++)addObject(new platforms1(), 520, 248 - i*16);
+        addObject(new platforms1(), 536, 200);
+        for(int i = 0; i<2; i++)addObject(new platforms1(), 536, 264 + i*16);
+        addObject(new platforms1(), 552, 184);
+        for(int i = 0; i < 2; i++)addObject(new platforms1(), 552, 296 + i * 16);
+        for(int i = 0; i < 3; i++)addObject(new platforms1(), 568, 328 + i * 16);
+        addObject(new platforms1(), 568, 168);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 568 + i*16, 360);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 584 + i*16, 136);
+        addObject(new platforms1(), 584, 152);
+        addObject(new platforms1(), 600, 376);
+        addObject(new platforms1(), 616, 392);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 632 + i*16, 408);
+        for(int i = 0; i<4; i++)addObject(new platforms1(), 632, 72 + i*16);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 648 + i*16, 72);
         
         
-        //add first half of water and bottom void
+        
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 664 + i*16, 424);
+        for(int i = 0; i<5; i++) addObject(new platforms1(), 696 + i*16, 440);
+        for(int i = 0; i<4; i++) addObject(new platforms1(), 760 + i*16, 424);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 808 + i*16, 408);
+        addObject(new platforms1(), 824, 392);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 824 + i*16, 376);
+        addObject(new platforms1(), 840, 360);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 840 + i*16, 344);
+        addObject(new platforms1(), 856, 328);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 856 + i*16, 312);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 872 + i*16, 296);
+        addObject(new platforms1(), 888, 280);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 888 + i*16, 264);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 888 + i*16, 248);
+        for(int i = 0; i<2; i++)addObject(new platforms1(), 888, 232 - i*16);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 856 + i*16, 200);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 840 + i*16, 184);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 824 + i*16, 168);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 808 + i*16, 152);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 792 + i*16, 136);
+        addObject(new platforms1(), 792, 120);
+        for(int i = 0; i<3; i++) addObject(new platforms1(), 760 + i*16, 104);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 744 + i*16, 88);
+        for(int i = 0; i<2; i++) addObject(new platforms1(), 728 + i*16, 72);
+        for(int i = 0; i<4; i++) addObject(new platforms1(), 680 + i*16, 56);
+        }
+    
+    private void openWater()
+    {
         for(int i = 0; i< 96; i++) addObject(new theVoid(), 8+i*16, 620);
         for(int i = 0; i < 7 ;i++) addObject(new Water(), 8 + i*16, 280);
         for(int i = 0; i < 7 ;i++) addObject(new Water(), 8 + i*16, 296);
@@ -97,224 +332,10 @@ public class World4 extends World
         for(int i = 0; i < 4;i++) addObject(new Water(), 888 + i*16, 312);
         for(int i = 0; i < 4;i++) addObject(new Water(), 904 + i*16, 296);
         for(int i = 0; i < 4;i++) addObject(new Water(), 904 + i*16, 280);
-        
-        //add bottom left platforms
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 8 + i*16, 504);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 24 + i*16, 520);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 40 + i*16, 536);
-        for(int i = 0; i<7; i++) addObject(new platforms1(), 72 + i*16, 552);
-        for(int i = 0; i<4; i++) addObject(new platforms1(), 168 + i*16, 568);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 216 + i*16, 584);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 248 + i*16, 600);
-        
-        //add tunnel platforms
-        for(int i = 0; i<5; i++) addObject(new platforms1(), 440 + i*16, 600);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 504 + i*16, 584);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 536 + i*16, 568);
-        for(int i = 0; i<4; i++) addObject(new platforms1(), 568 + i*16, 552);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 616 + i*16, 536);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 648 + i*16, 520);
-        for(int i = 0; i<8; i++) addObject(new platforms1(), 680 + i*16, 504);
-        for(int i = 0; i<5; i++) addObject(new platforms1(), 792 + i*16, 520);
-        addObject(new platforms1(), 856,504);
-        addObject(new platforms1(), 856, 488);
-        addObject(new platforms1(), 856, 472);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 856 + i*16, 456);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 872 + i*16, 440);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 872 + i*16, 424);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 888 + i*16, 408);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 904 + i*16, 392);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 904 + i*16, 376);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 920 + i*16, 360);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 936 + i*16, 344);
-        addObject(new platforms1(), 952, 328);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 952 + i*16, 312);
-        addObject(new platforms1(), 968, 296);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 968 + i*16, 280);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 984 + i*16, 264);
-        for(int i = 0; i<7; i++) addObject(new platforms1(), 1000 + i*16, 248);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1096 + i*16, 264);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1080 + i*16, 280);
-        for(int i = 0; i<5; i++) addObject(new platforms1(), 1016 + i*16, 296);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1000 + i*16, 312);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 984 + i*16, 328);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 968 + i*16, 344);
-        addObject(new platforms1(), 968, 360);
-        addObject(new platforms1(), 968, 376);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 952 + i*16, 392);
-        addObject(new platforms1(), 952, 408);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 936 + i*16, 424);
-        addObject(new platforms1(), 936, 440);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 920 + i*16, 456);
-        addObject(new platforms1(), 920, 472);
-        addObject(new platforms1(), 920, 488);
-        addObject(new platforms1(), 920, 504);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 920 + i*16, 520);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 952 + i*16, 536);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 968 + i*16, 552);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 984 + i*16, 568);
-        for(int i = 0; i<7; i++) addObject(new platforms1(), 1016 + i*16, 584);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1112 + i*16, 568);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1144 + i*16, 552);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1160 + i*16, 536);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1192 + i*16, 520);
-        addObject(new platforms1(), 1192, 552);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1192 + i*16, 568);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1208 + i*16, 584);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1224 + i*16, 600);
-        addObject(new platforms1(), 1240, 616);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1208 + i*16, 504);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1240 + i*16, 488);
-        addObject(new platforms1(), 1240, 472);
-        addObject(new platforms1(), 1240, 456);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1240 + i*16, 440);
-        for(int i = 0; i<7; i++) addObject(new platforms1(), 1144 + i*16, 424);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1160 + i*16, 440);
-        for(int i = 0; i<5; i++) addObject(new platforms1(), 1096 + i*16, 408);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1080 + i*16, 424);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1064 + i*16, 440);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1064 + i*16, 456);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1048 + i*16, 472);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1112 + i*16, 392);
-        addObject(new platforms1(), 1144, 376);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1160 + i*16, 360);
-        for(int i = 0; i<8; i++) addObject(new platforms1(), 1192 + i*16, 344);
-        for(int i = 0; i<8; i++) addObject(new platforms1(), 1224 + i*16, 328);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1288 + i*16, 360);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1304 + i*16, 376);
-        addObject(new platforms1(), 1320, 392);
-        addObject(new platforms1(), 1320, 408);
-        addObject(new platforms1(), 1320, 424);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1304 + i*16, 440);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1304 + i*16, 456);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1288 + i*16, 472);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1288 + i*16, 488);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1304 + i*16, 504);
-        for(int i = 0; i<4; i++) addObject(new platforms1(), 1272 + i*16, 520);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1288 + i*16, 536);
-        for(int i = 0; i<4; i++) addObject(new platforms1(), 1240 + i*16, 552);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1256 + i*16, 568);
-        addObject(new platforms1(), 1272, 584);
-        addObject(new platforms1(), 1352, 344);
-        addObject(new platforms1(), 1368, 360);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1368 + i*16, 376);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1352 + i*16, 392);
-        for(int i = 0; i<4; i++) addObject(new platforms1(), 1352 + i*16, 408);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1368 + i*16, 424);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1384 + i*16, 440);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1400 + i*16, 456);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1400 + i*16, 472);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1416 + i*16, 488);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1416 + i*16, 504);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1416 + i*16, 520);
-        addObject(new platforms1(), 1432, 536);
-        
-        //add second half of tunnel platforms
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1352 + i*16, 552);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1368 + i*16, 568);
-        for(int i = 0; i<6; i++) addObject(new platforms1(), 1384 + i*16, 584);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1464 + i*16, 568);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1496 + i*16, 552);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1496 + i*16, 536);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1496 + i*16, 520);
-        addObject(new platforms1(), 1496, 504);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1480 + i*16, 488);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1480 + i*16, 472);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1480 + i*16, 456);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1480 + i*16, 440);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1464 + i*16, 424);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1464 + i*16, 408);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1448 + i*16, 392);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1448 + i*16, 376);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1432 + i*16, 360);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1416 + i*16, 344);
-        addObject(new platforms1(), 1416, 328);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1384 + i*16, 312);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1368 + i*16, 296);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1336 + i*16, 280);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1336 + i*16, 264);
-        for(int i = 0; i<11; i++) addObject(new platforms1(), 1192 + i*16, 248);
-        for(int i = 0; i<7; i++) addObject(new platforms1(), 1240 + i*16, 232);
-        for(int i = 0; i<6; i++) addObject(new platforms1(), 1192 + i*16, 264);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1192 + i*16, 280);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1160 + i*16, 296);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1144 + i*16, 312);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1112 + i*16, 328);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1080 + i*16, 344);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1064 + i*16, 360);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1048 + i*16, 376);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1032 + i*16, 392);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1016 + i*16, 408);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1000 + i*16, 424);
-        addObject(new platforms1(), 1000, 440);
-        addObject(new platforms1(), 1000, 456);
-        addObject(new platforms1(), 1000, 472);
-        addObject(new platforms1(), 1000, 488);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1000 + i*16, 504);
-        for(int i = 0; i<7; i++) addObject(new platforms1(), 1016 + i*16, 520);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1112 + i*16, 504);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1128 + i*16, 488);
-        for(int i = 0; i<4; i++) addObject(new platforms1(), 1160 + i*16, 472);
-        addObject(new platforms1(), 1208, 456);
-        addObject(new platforms1(), 1128, 472);
-        addObject(new platforms1(), 1128, 456);
-        
-        //add island
-        addObject(new platforms1(),1528,344);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1496 + i*16, 328);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1480 + i*16, 312);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1464 + i*16, 296);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1432 + i*16, 280);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1432 + i*16, 264);
-        for(int i = 0; i<4; i++) addObject(new platforms1(), 1448 + i*16, 248);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 1496 + i*16, 264);
-        
-        //add iceberg
-        addObject(new platforms1(), 552, 296);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 552 + i*16, 312);
-        addObject(new platforms1(), 568, 328);
-        addObject(new platforms1(), 568, 344);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 568 + i*16, 360);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 600 + i*16, 376);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 616 + i*16, 392);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 632 + i*16, 408);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 664 + i*16, 424);
-        for(int i = 0; i<5; i++) addObject(new platforms1(), 696 + i*16, 440);
-        for(int i = 0; i<4; i++) addObject(new platforms1(), 760 + i*16, 424);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 808 + i*16, 408);
-        addObject(new platforms1(), 824, 392);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 824 + i*16, 376);
-        addObject(new platforms1(), 840, 360);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 840 + i*16, 344);
-        addObject(new platforms1(), 856, 328);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 856 + i*16, 312);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 872 + i*16, 296);
-        addObject(new platforms1(), 888, 280);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 888 + i*16, 264);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 888 + i*16, 248);
-        for(int i = 0; i<2; i++)addObject(new platforms1(), 888, 232 - i*16);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 856 + i*16, 200);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 840 + i*16, 184);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 824 + i*16, 168);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 808 + i*16, 152);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 792 + i*16, 136);
-        addObject(new platforms1(), 792, 120);
-        for(int i = 0; i<3; i++) addObject(new platforms1(), 760 + i*16, 104);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 744 + i*16, 88);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 728 + i*16, 72);
-        for(int i = 0; i<4; i++) addObject(new platforms1(), 680 + i*16, 56);
-        for(int i = 0; i<4; i++) addObject(new platforms1(), 632 + i*16, 72);
-        for(int i = 0; i<4; i++)addObject(new platforms1(), 632, 72 + i*16);
-        for(int i = 0; i<4; i++) addObject(new platforms1(), 584 + i*16, 136);
-        for(int i = 0; i<2; i++)addObject(new platforms1(), 584, 136 + i*16);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 568 + i*16, 168);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 552 + i*16, 184);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 536 + i*16, 200);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 520 + i*16, 216);
-        for(int i = 0; i<2; i++)addObject(new platforms1(), 520, 248 - i*16);
-        for(int i = 0; i<3; i++)addObject(new platforms1(), 536, 248 + i*16);
-        
-        //add remaining water inside tunnels
+    }
+    
+    private void tunnelWater()
+    {
         for(int i = 0; i<18;i++)addObject(new Water(), 1256+i*16,600);
         for(int i = 0; i<6;i++)addObject(new Water(), 1288+i*16, 584);
         for(int i = 0; i<5;i++)addObject(new Water(), 1288+i*16, 568);
@@ -405,6 +426,7 @@ public class World4 extends World
         for(int i = 0; i<4;i++)addObject(new Water(), 1400+i*16, 296);
         for(int i = 0; i<3;i++)addObject(new Water(), 1384+i*16, 280);
     }
+    
     //reset coins on death
     public void act()
     {
