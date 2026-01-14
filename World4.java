@@ -34,6 +34,8 @@ public class World4 extends World
         addObject(new Coin(false), 632, 120);
         addObject(new Coin(false), 1320, 344);
         
+        addObject(new Spike(), 1190, 234);
+        
         for(int i = 0; i<13;i++) addObject(new platforms1(), 120 + i*16, 280);
         addObject(new platforms1(), 120, 296);
         addObject(new platforms1(), 136, 328);

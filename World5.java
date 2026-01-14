@@ -18,16 +18,14 @@ public class World5 extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(785, 448, 1, false); 
         setBackground("world5.png");
-        addObject(new SpawnPoint(),536 , 50); 
         
-        addObject(player, 136, 130);
         prepare(player);
     }
     
     private void prepare(Player player)
     {
-        //addObject(player, 536, 260);
-        //addObject(new SpawnPoint(), 536, 260);
+        addObject(player, 536, 260);
+        addObject(new SpawnPoint(), 536, 260);
         addObject(new Portal(), 168, 184);
         addObject(new Coin(false), 536, 408);
         addObject(new Coin(true), 404, 134);
