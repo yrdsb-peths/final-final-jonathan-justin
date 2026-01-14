@@ -151,7 +151,7 @@ public class Player extends Actor
         setLocation(getX() + dx * speed, getY());
         while(isTouching(platforms1.class) ||isTouching(platforms2.class)) setLocation(getX() - dx, getY());
         
-        setLocation(getX(), getY() + dx * speed);
+        setLocation(getX(), getY() + dy * speed);
         while(isTouching(platforms1.class) ||isTouching(platforms2.class)) setLocation(getX(), getY() - dy);
     }
 
@@ -334,7 +334,7 @@ public class Player extends Actor
             collectCoin();
             checkVoid();
         }
-        checkWater();
+        
         numOfCoins = Coin.coinCount();
         checkSpike();
         handleDeath();

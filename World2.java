@@ -18,7 +18,7 @@ public class World2 extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(801, 112, 1, false); 
         
-        //addObject(new Portal(), 64, 70);//test portal
+        addObject(new Portal(), 64, 70);//test portal
         setBackground("world2.png");
         
         prepare(player);
@@ -32,7 +32,7 @@ public class World2 extends World
         addObject(new Coin(false), 272, 27);
         addObject(new PauseButton(), 8, 8);
         for(int i = 0; i < 29;i++)addObject(new Spike(), 8+16*i, 108);
-        for(int i = 0; i < 10; i++)addObject(new FakeSpike(), 472 + 16*i,108);
+        for(int i = 0; i < 10; i++)addObject(new FakeSpike(), 472 + 16*i,109);
         addObject(new Coin(true),536, 104);
         for(int i = 0; i <12; i++)addObject(new Spike(), 632 + 16*i, 108);
         for(int i = 0; i < 50; i++)addObject(new platforms1(), 8 + 16 * i, 119);
