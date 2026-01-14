@@ -1,16 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class World2 here.
+ * World 1 Class, first level of the game
  * 
- * @author (your name) 
- * @version (a version number or a date)
  */
 public class World1 extends World
 {
+    //adding music
     private GreenfootSound music = new GreenfootSound("world1.mp3");
     /**
-     * Constructor for objects of class World2.
+     * Constructor for objects of class World1.
      * 
      */
     public World1()
@@ -24,9 +23,15 @@ public class World1 extends World
         prepare();
         Coin.reset();
     }
+    /**
+     * stop music, call when leaving world
+     */
     public void stopMusic() {
         music.stop();
     }
+    /**
+     * add all elements to the world
+     */
     private void prepare()
     {
         //add all necessary objects
@@ -39,7 +44,9 @@ public class World1 extends World
         addGround();
         }
     
-    //basic level needs
+    /**
+     * add necessary elements for the world
+     */
     private void addBasics()
     {
         addObject(new SpawnPoint(), 180, 375);
@@ -47,13 +54,18 @@ public class World1 extends World
         addObject(new PauseButton(), 10, 10);
     }
     
+    /**
+     * add all platforms
+     */
     private void addGround()
     {
         addFloor();
         addPlatforms();
     }
     
-    //adds floor to level in order left to right
+    /**
+     * add floor of the world, goes from left to right
+     */
     private void addFloor()
     {
         for (int i = 0; i < 2; i++)addObject(new platforms1(), 8, 264 - 16 * i);
@@ -71,7 +83,9 @@ public class World1 extends World
         for (int i = 0; i < 3; i++)addObject(new platforms1(), getWidth() - 9, 312 - i * 16);
     }
     
-    //adds platforms for the player to jump on in order left to right
+    /**
+     * add all floating platforms of the world
+     */
     private void addPlatforms()
     {
         addObject(new platforms2(), 8, 198);
@@ -95,14 +109,18 @@ public class World1 extends World
         addObject(new platforms2(), 296, 118);
     }
     
-    //adds secret coins for the player to find from left to right
+    /**
+     * add coins, some secret
+     */
     private void addCoins()
     {
         addObject(new Coin(false), 8, 390);
         addObject(new Coin(true), 299, 200);
     }
     
-    //reset world if player dies
+    /**
+     * reset world when player dies
+     */
     public void act(){
         if(Player.getDeath()){
             prepare();

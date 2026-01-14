@@ -1,13 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class World2 here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * second level of the game
  */
 public class World2 extends World
 {
+    //reset world and music variables
     private boolean resetting = false;
     private GreenfootSound music = new GreenfootSound("world2.mp3");
     /**
@@ -24,9 +22,16 @@ public class World2 extends World
         music.playLoop();
         prepare(player);
     }
+    /**
+     * stop music when leaving world
+     */
     public void stopMusic() {
         music.stop();
     }
+    /**
+     * prepare the world
+     * @param player use the existing player to continue playing
+     */
     private void prepare(Player player)
     {
         addObject(player, 8, 56);
@@ -37,14 +42,18 @@ public class World2 extends World
         addGround();
         addSpikes();        
     }
-    
+    /**
+     * add all platforms in the world
+     */
     private void addGround()
     {
         addPlatforms();
         addTopAndBottom();
     }
     
-    //basic level needs
+    /**
+     * add necessities of the level
+     */
     private void addBasics()
     {
         addObject(new SpawnPoint(), 8, 56);
@@ -52,7 +61,9 @@ public class World2 extends World
         addObject(new Portal(), 792, 70);
     }
     
-    //adds secret coins to the level (L - R)
+    /**
+     * add all secret coins to the map
+     */
     private void addCoins()
     {
         addObject(new Coin(false), 8, 30);
@@ -60,7 +71,9 @@ public class World2 extends World
         addObject(new Coin(true),536, 104);
     }
     
-    //creates the platforms for the player to jump on (L - R)
+    /**
+     * add all floating platforms
+     */
     private void addPlatforms()
     {
         for(int i = 0; i < 6; i++)for(int x = 0; x < 2; x++)addObject(new platforms2(),8 + 16 * x + (64 * i), 86);
@@ -70,7 +83,9 @@ public class World2 extends World
         for(int i = 0; i < 2; i++)addObject(new platforms2(), 792 - 16 * i, 86);
     }
     
-    //creates the floor and ceiling of the map (L - R)
+    /**
+     * add all edge walls
+     */
     private void addTopAndBottom()
     {
         for(int i = 0; i < 50; i++)addObject(new platforms1(), 8 + 16 * i, 119);
@@ -79,7 +94,9 @@ public class World2 extends World
         addObject(new platforms1(), 300, 24);
     }
     
-    //add the bottom row of spikes (L - R)
+    /**
+     * add spikes at the bottom of the map
+     */
     private void addSpikes()
     {
         for(int i = 0; i < 29;i++)addObject(new Spike(), 8+16*i, 108);
@@ -87,7 +104,9 @@ public class World2 extends World
         for(int i = 0; i <12; i++)addObject(new Spike(), 632 + 16*i, 108);
     }
     
-    //reset world if player dies
+    /**
+     * reset world on player death
+     */
     public void act()
     {
         if (Player.getDeath() && !resetting)

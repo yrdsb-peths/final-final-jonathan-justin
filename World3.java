@@ -1,13 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class World3 here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * third level of the game
  */
 public class World3 extends World
 {
+    //reset and music variables
     private boolean resetting = false;
     private GreenfootSound music = new GreenfootSound("world3.mp3");
     /**
@@ -22,9 +20,16 @@ public class World3 extends World
         music.playLoop();
         prepare(player);
     }
+    /**
+     * stop music when leaving world
+     */
     public void stopMusic() {
         music.stop();
     }
+    /**
+     * prepare the world
+     * @param player use the existing player to continue playing
+     */
     private void prepare(Player player)
     {
         addObject(player, 50, 400);
@@ -38,21 +43,27 @@ public class World3 extends World
         addGround();
     }
     
-    //adds the basic level needs
+    /**
+     * add necessities of the level
+     */
     private void addBasics()
     {
         addObject(new SpawnPoint(), 50, 400);
         addObject(new Portal(), 504, 230);
         addObject(new PauseButton(), 10, 10);
     }
-    
+    /**
+     * add all platforms in the world
+     */
     private void addGround()
     {
         addFloor();
         addPlatforms();
     }
     
-    //adds the bottom part of the map (L - R)
+    /**
+     * add floor of the map
+     */
     private void addFloor()
     {
         for(int i = 0; i < 4; i++)addObject(new platforms1(), 8, 424 + i * 16);
@@ -81,7 +92,9 @@ public class World3 extends World
         for(int i = 0; i < 4; i++)addObject(new platforms1(), 344 + i * 16, 488);
     }
     
-    //adds the floating platforms for the player to jump on (L - R)
+    /**
+     * add all floating platforms of the world
+     */
     private void addPlatforms()
     {
         addObject(new platforms1(), 56, 152);
@@ -105,13 +118,17 @@ public class World3 extends World
 
     }
     
-    //add water (L - R)
+    /**
+     * add all the water in the map
+     */
     private void addWater()
     {
         for(int i = 0; i < 7; i++)addObject(new Water(), 408 + i * 16, 488);
     }
     
-    //adds secret coins (L - R)
+    /**
+     * adds all secret coins
+     */
     private void addCoins()
     {
         addObject(new Coin(false), 24, 472);
@@ -119,14 +136,18 @@ public class World3 extends World
         addObject(new Coin(true), 420, 200);
     }
     
-    //adds spikes (L - R)
+    /**
+     * adds all spikes
+     */
     private void addSpikes()
     {
         addObject(new Spike(), 72, 490);
         addObject(new Spike(), 120, 490);
     }
     
-    //reset world if player dies
+    /**
+     * reset world on player death
+     */
     public void act()
     {
         if (Player.getDeath() && !resetting)

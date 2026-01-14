@@ -1,13 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class World4 here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * fourth level of the game
  */
 public class World4 extends World
 {
+    //reset and music variables
     private boolean resetting = false;
     private GreenfootSound music = new GreenfootSound("world4.mp3");
     /**
@@ -23,9 +21,16 @@ public class World4 extends World
         music.playLoop();
         prepare(player);
     }
+    /**
+     * stop music when leaving world
+     */
     public void stopMusic() {
         music.stop();
     }
+    /**
+     * prepare the world
+     * @param player use the existing player to continue playing
+     */
     private void prepare(Player player)
     {
         addObject(player, 160, 260);
@@ -40,13 +45,17 @@ public class World4 extends World
         addWater();
     }
     
-    //adds spikes (L - R)
+    /**
+     * add singular spike on the map
+     */
     private void addSpikes()
     {
         addObject(new Spike(), 1190, 234);
     }
     
-    //basic level needs
+    /**
+     * add necessities of the level
+     */
     private void addBasics()
     {
         addObject(new PauseButton(), 10, 10);
@@ -54,7 +63,9 @@ public class World4 extends World
         addObject(new Portal(), 1528, 248);
     }
     
-    //adds secret coins (L - R)
+    /**
+     * add all secret coins
+     */
     private void addCoins()
     {
         addObject(new Coin(false), 216, 360);
@@ -63,7 +74,9 @@ public class World4 extends World
         addObject(new Coin(false), 1320, 344);
     }
     
-    
+    /**
+     * add all platforms in the world
+     */
     private void addLand()
     {
         startingIsland();
@@ -74,14 +87,18 @@ public class World4 extends World
         iceberg();
     }
     
-    
+    /**
+     * add all water
+     */
     private void addWater()
     {
         openWater();
         tunnelWater();
     }
     
-    //adds the island the player spawns on (L - R)
+    /**
+     * add the island player spawns on
+     */
     private void startingIsland()
     {
         for(int i = 0; i<13;i++) addObject(new platforms1(), 120 + i*16, 280);
@@ -99,7 +116,9 @@ public class World4 extends World
         addObject(new platforms1(), 312, 312);
     }
     
-    //adds the submerged land in bottom left (L - R)
+    /**
+     * add top right island with the portal
+     */
     private void cornerLand()
     {
         for(int i = 0; i<2; i++) addObject(new platforms1(), 8 + i*16, 504);
@@ -111,7 +130,9 @@ public class World4 extends World
         addObject(new platforms1(), 264, 600);
     }
     
-    //adds the land connected to the bottom of the map (L - R)
+    /**
+     * add the tunnel systems
+     */
     private void middleIslandBottom()
     {
         for(int i = 0; i<4; i++) addObject(new platforms1(), 440 + i*16, 600);
@@ -200,7 +221,9 @@ public class World4 extends World
         addObject(new platforms1(), 1432, 536);
     }
     
-    //adds the floating island above middleIslandBottom (L - R)
+    /**
+     * add the top portion of the middle island(above water)
+     */
     private void middleIslandTop()
     {
         for(int i = 0; i<2; i++)addObject(new platforms1(), 1000 + i*16, 424);
@@ -264,14 +287,18 @@ public class World4 extends World
         for(int i = 0; i<2; i++)addObject(new platforms1(), 1512 + i * 16, 264);
         addObject(new platforms1(), 1528, 344);
     }
-    
+    /**
+     * add whole iceberg entity
+     */
     private void iceberg()
     {
         icebergTop();
         icebergBottom();
     }
     
-    //adds the iceberg above water y < 280 (L - R)
+    /**
+     * add top side of the iceberg
+     */
     private void icebergTop()
     {
         for(int i = 0; i<3; i++)addObject(new platforms1(), 520, 248 - i*16);
@@ -297,7 +324,9 @@ public class World4 extends World
         for(int i = 0; i<2; i++)addObject(new platforms1(), 904, 248 + i * 16);
         }
     
-    //adds the bottom of the iceberg below water level y >= 280 (L - R)
+    /**
+     * add the bottom side of the iceberg
+     */
     private void icebergBottom()
     {
         for(int i = 0; i < 2; i++)addObject(new platforms1(), 552, 296 + i * 16);
@@ -316,7 +345,9 @@ public class World4 extends World
         for(int i = 0; i<2; i++)addObject(new platforms1(), 888, 296 - i * 16);
     }
     
-    //adds water outside of the tunnel on the left (L - R)
+    /**
+     * add all open water on the left of the map
+     */
     private void openWater()
     {
         for(int i = 0; i< 96; i++) addObject(new theVoid(), 8+i*16, 620);
@@ -363,7 +394,9 @@ public class World4 extends World
         for(int i = 0; i < 4;i++) addObject(new Water(), 904 + i*16, 280);
     }
     
-    //adds water inside the tunnel system 
+    /**
+     * add all the water on the left in the tunnel system
+     */
     private void tunnelWater()
     {
         for(int i = 0; i<18;i++)addObject(new Water(), 1256+i*16,600);
@@ -457,7 +490,9 @@ public class World4 extends World
         for(int i = 0; i<3;i++)addObject(new Water(), 1384+i*16, 280);
     }
     
-    //reset coins on death
+    /**
+     * reset world on player death
+     */
     public void act()
     {
         if (Player.getDeath() && !resetting)

@@ -1,13 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class World5 here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * fifth world of the game
  */
 public class World5 extends World
 {
+    //reset and music variables
     private boolean resetting = false;
     private GreenfootSound music = new GreenfootSound("world5.mp3");
     /**
@@ -24,9 +22,16 @@ public class World5 extends World
         music.playLoop();
         prepare(player);
     }
+    /**
+     * stop music when leaving world
+     */
     public void stopMusic() {
         music.stop();
     }
+    /**
+     * prepare the world, add all the land
+     * @param player use the existing player to continue playing
+     */
     private void prepare(Player player)
     {
         addObject(player, 536, 260);
@@ -105,6 +110,9 @@ public class World5 extends World
         
         addSpikes();
     }
+    /**
+     * add all the water on the map
+     */
     private void addWater()
     {
         for(int i = 0; i < 3; i++)addObject(new Water(), 56 + i * 16, 184);
@@ -137,6 +145,9 @@ public class World5 extends World
         for(int i = 0; i < 9; i++)addObject(new Water(), 488, 232 - i * 16);
         for(int i = 0; i < 2; i++)addObject(new Water(), 504, 120 - i * 16);
     }
+    /**
+     * add all spikes
+     */
     private void addSpikes()
     {
         addSpikeRs();
@@ -144,6 +155,9 @@ public class World5 extends World
         addSpikeUs();
         addSpikeDs();
     }
+    /**
+     * add all right facing spikes
+     */
     private void addSpikeRs()
     {
         for(int i = 0; i < 2; i++)addObject(new SpikeR(), 507, 104 + i * 16);
@@ -161,6 +175,9 @@ public class World5 extends World
         addObject(new SpikeR(), 106, 230);
         addObject(new SpikeR(), 90, 214);
     }
+    /**
+     * add all left facing spikes
+     */
     private void addSpikeLs()
     {
         for(int i = 0; i < 7; i++)addObject(new SpikeL(), 453, 104 + i * 16);        
@@ -179,6 +196,9 @@ public class World5 extends World
         for(int i = 0; i < 7; i++)addObject(new SpikeL(), 53, 248 - i * 16);
         for(int i = 0; i < 2; i++)addObject(new SpikeL(), 149, 200 + i * 16);
     }
+    /**
+     * add all regular spikes
+     */
     private void addSpikeUs()
     {
         for(int i = 0; i < 4; i++)addObject(new Spike(), 456 - i * 16, 346);
@@ -189,6 +209,9 @@ public class World5 extends World
         addObject(new Spike(), 200, 234);
         addObject(new Spike(), 232, 234);
     }
+    /**
+     * add all upside down spikes
+     */
     private void addSpikeDs()
     {
         addObject(new SpikeD(), 424, 310);
@@ -196,7 +219,9 @@ public class World5 extends World
         for(int i = 0; i < 5; i++)addObject(new SpikeD(), 264 - i * 16, 310);
         for(int i = 0; i < 2; i++)addObject(new SpikeD(), 184 - i * 16, 294);
     }
-    //reset world on player death
+    /**
+     * reset world on player death
+     */
     public void act()
     {
         if (Player.getDeath() && !resetting)
