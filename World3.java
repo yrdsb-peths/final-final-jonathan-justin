@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class World3 extends World
 {
-
+    private boolean resetting = false;
     /**
      * Constructor for objects of class World3.
      * 
@@ -103,7 +103,8 @@ public class World3 extends World
         addObject(new platforms2(), 504, 246);
         
     }
-    private boolean resetting = false;
+    
+    //reset world if player dies
     public void act()
     {
         if (Player.getDeath() && !resetting)

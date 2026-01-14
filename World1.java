@@ -87,6 +87,7 @@ public class World1 extends World
 
         for (int i = 0; i < 3; i++)addObject(new platforms1(), getWidth() - 9, 314 - i * 16);
     }
+    //reset world if player dies
     public void act(){
         if(Player.getDeath()){
             prepare();

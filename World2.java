@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class World2 extends World
 {
-
+    private boolean resetting = false;
     /**
      * Constructor for objects of class World2.
      * 
@@ -18,7 +18,7 @@ public class World2 extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(801, 112, 1, false); 
         
-        addObject(new Portal(), 64, 70);
+        //addObject(new Portal(), 64, 70);//test portal
         setBackground("world2.png");
         
         prepare(player);
@@ -48,7 +48,8 @@ public class World2 extends World
         for(int i = 0; i < 3; i++)addObject(new platforms2(), 632 + 48 * i, 86);
         for(int i = 0; i < 2; i++)addObject(new platforms2(), 792 - 16 * i, 86);
     }
-    private boolean resetting = false;
+    
+    //reset world if player dies
     public void act()
     {
         if (Player.getDeath() && !resetting)

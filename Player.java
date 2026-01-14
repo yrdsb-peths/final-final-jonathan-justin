@@ -252,6 +252,7 @@ public class Player extends Actor
         Coin coin = (Coin) getOneIntersectingObject(Coin.class);
         if (coin != null)
         {
+            Greenfoot.playSound("coin.mp3");
             coin.collect();
         }
     }
@@ -299,6 +300,7 @@ public class Player extends Actor
         isDying = true;
         numOfCoins = Coin.savedCoins();
         Coin.resetCheckpoint();
+        Greenfoot.playSound("death.mp3");
         if(deathTimer.millisElapsed() >= DEATH_DELAY)
         {
             SpawnPoint spawn = (SpawnPoint) getWorld().getObjects(SpawnPoint.class).get(0);
