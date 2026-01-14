@@ -138,8 +138,8 @@ public class World4 extends World
         for(int i = 0; i<2; i++) addObject(new platforms1(), 1224 + i*16, 600);
         addObject(new platforms1(), 1240, 616);
         for(int i = 0; i<3; i++) addObject(new platforms1(), 1208 + i*16, 504);
-        for(int i = 0; i<2; i++) addObject(new platforms1(), 1240 + i*16, 488);
-        for(int i = 0; i < 2; i++)addObject(new platforms1(), 1240, 472 - i * 16);
+        //for(int i = 0; i<2; i++) addObject(new platforms1(), 1240 + i*16, 488);
+        for(int i = 0; i < 3; i++)addObject(new platforms1(), 1240, 488 - i * 16);
         for(int i = 0; i<2; i++) addObject(new platforms1(), 1240 + i*16, 440);
         for(int i = 0; i<7; i++) addObject(new platforms1(), 1144 + i*16, 424);
         for(int i = 0; i<2; i++) addObject(new platforms1(), 1160 + i*16, 440);
