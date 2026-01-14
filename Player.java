@@ -282,7 +282,7 @@ public class Player extends Actor
         boolean nowTouching = isTouching(Water.class);
         
         if(touchingWater && !nowTouching) ySpeed = -4;
-        touchingWater = newTouching;
+        touchingWater = nowTouching;
     }
     
     //check death status for other classes
@@ -323,7 +323,7 @@ public class Player extends Actor
         {
             if(touchingWater){
                 swimMove();
-                ySpeed = 0:
+                ySpeed = 0;
             }
             else{
                 moveHorizontal();
