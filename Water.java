@@ -18,6 +18,6 @@ public class Water extends Actor
         image.setColor(Color.ORANGE);
         image.fill();
         setImage(image);
-        //getImage().setTransparency(0);
+        getImage().setTransparency(0);
     }
 }
