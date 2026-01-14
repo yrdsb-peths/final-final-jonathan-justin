@@ -16,14 +16,17 @@ public class World5 extends World
     public World5(Player player)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1, false); 
+        super(785, 448, 1, false); 
+        setBackground("world5.png");
+        
         
         prepare(player);
     }
     
     private void prepare(Player player)
     {
-        addObject(player, 50, 50);
+        addObject(player, 520, 288);
+        for(int i = 0; i < 5; i++)addObject(new platforms1(), 520, 296 + i * 16);
     }
     private boolean resetting = false;
     public void act()
