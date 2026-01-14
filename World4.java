@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class World4 extends World
 {
     private boolean resetting = false;
-    
+    private GreenfootSound music = new GreenfootSound("world4.mp3");
     /**
      * Constructor for objects of class World4.
      * 
@@ -20,10 +20,12 @@ public class World4 extends World
         super(1537, 608, 1, false);  
         
         addObject(new Portal(), 130, 260);//test portal
-        
+        music.playLoop();
         prepare(player);
     }
-    
+    public void stopMusic() {
+        music.stop();
+    }
     private void prepare(Player player)
     {
         addObject(player, 160, 260);

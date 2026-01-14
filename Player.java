@@ -34,6 +34,7 @@ public class Player extends Actor
     GreenfootImage[] idleDeadRight = new GreenfootImage[4];
     GreenfootImage[] idleDeadLeft = new GreenfootImage[4];
     boolean touchingWater = false;
+    boolean jumpKeyHeld = false;
     
     //constructor for animation
     public Player()
@@ -204,7 +205,15 @@ public class Player extends Actor
             }
             ySpeed = 0;
         }
-        if (onGround && (Greenfoot.isKeyDown("up")||Greenfoot.isKeyDown("w")||Greenfoot.isKeyDown("space"))) ySpeed = -JUMP_FORCE;
+        boolean jumpPressed =Greenfoot.isKeyDown("up")|| Greenfoot.isKeyDown("w")|| Greenfoot.isKeyDown("space");
+
+        if (onGround && jumpPressed && !jumpKeyHeld)
+        {
+            ySpeed = -JUMP_FORCE;
+            Greenfoot.playSound("jump.mp3");
+        }
+
+        jumpKeyHeld = jumpPressed;
     }
     
     //teleport to new world if touching a portal
@@ -217,22 +226,27 @@ public class Player extends Actor
         Coin.saveCoinCount();
         if (current instanceof World1)
         {
+            ((World1) current).stopMusic();
             Greenfoot.setWorld(new World2(player));
         }
         else if (current instanceof World2)
         {
+            ((World2) current).stopMusic();
             Greenfoot.setWorld(new World3(player));
         }
         else if (current instanceof World3)
         {
+            ((World3) current).stopMusic();
             Greenfoot.setWorld(new World4(player));
         }
         else if (current instanceof World4)
         {
+            ((World4) current).stopMusic();
             Greenfoot.setWorld(new World5(player));
         }
         else if (current instanceof World5)
         {
+            ((World5) current).stopMusic();
             Greenfoot.setWorld(new FinalWorld(player));
         }
     }

@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class World5 extends World
 {
     private boolean resetting = false;
+    private GreenfootSound music = new GreenfootSound("world5.mp3");
     /**
      * Constructor for objects of class World5.
      * 
@@ -20,10 +21,12 @@ public class World5 extends World
         setBackground("world5.png");
         
         addObject(new Portal(), 560, 300);
-        
+        music.playLoop();
         prepare(player);
     }
-    
+    public void stopMusic() {
+        music.stop();
+    }
     private void prepare(Player player)
     {
         addObject(player, 536, 260);
