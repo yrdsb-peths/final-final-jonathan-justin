@@ -135,12 +135,12 @@ public class Player extends Actor
             facing = "right";
             dx++;
         }
-        if(Greenfoot.isKeyDown("up")||Greenfoot.isKeyDown("w"))
+        if(Greenfoot.isKeyDown("up")||Greenfoot.isKeyDown("w")||Greenfoot.isKeyDown("space"))
         {
             dy--;
             //verticalInput = true;
         }
-        if(Greenfoot.isKeyDown("down")||Greenfoot.isKeyDown("s"))
+        if(Greenfoot.isKeyDown("down")||Greenfoot.isKeyDown("s")||Greenfoot.isKeyDown("shift"))
         {
             dy++;
             //verticalInput = true;
@@ -148,9 +148,11 @@ public class Player extends Actor
         
         //if(!verticalInput) dy += 1;
         
-        setLocation(getX() + dx * speed, getY() + dy * speed);
+        setLocation(getX() + dx * speed, getY());
+        while(isTouching(platforms1.class) ||isTouching(platforms2.class)) setLocation(getX() - dx, getY());
         
-        while(isTouching(platforms1.class) ||isTouching(platforms2.class)) setLocation(getX() - dx, getY() - dy);
+        setLocation(getX(), getY() + dx * speed);
+        while(isTouching(platforms1.class) ||isTouching(platforms2.class)) setLocation(getX(), getY() - dy);
     }
 
     //horizontal movement function
@@ -277,13 +279,10 @@ public class Player extends Actor
     //change to swimming if character touching water
     private void checkWater()
     {
-        if(isTouching(Water.class))
-        {
-            touchingWater= true;
-        }
-        else{
-            touchingWater = false;
-        }
+        boolean nowTouching = isTouching(Water.class);
+        
+        if(touchingWater && !nowTouching) ySpeed = -4;
+        touchingWater = newTouching;
     }
     
     //check death status for other classes
@@ -318,11 +317,13 @@ public class Player extends Actor
     }
     public void act()
     {
+        checkWater();
         //move character based off current conditions and touching classes
         if(!dying)
         {
             if(touchingWater){
                 swimMove();
+                ySpeed = 0:
             }
             else{
                 moveHorizontal();
