@@ -134,102 +134,43 @@ public class Player extends Actor
             getWorld().showText("Coins: " + numOfCoins, getWorld().getWidth() - 60, 8);
         }
     }
-    private double swimVX = 0;
-    private double swimVY = 0;
-    private double swimAccel = 0.25; 
-    private double swimMax = 3.0;  
-    private double swimDrag = 0.90;
-    private double buoyancy = 0.05;
-    int stepX = (int) Math.signum(swimVX);
-    int stepY = (int) Math.signum(swimVY);
     
     private void swimMove()
     {
-        int worldWidth = getWorld().getWidth();
-        int worldHeight = getWorld().getHeight();
-        int myWidth = getImage().getWidth();
-        int myHeight = getImage().getHeight();
-        int stepX = (int) Math.signum(swimVX);
-        int stepY = (int) Math.signum(swimVY);
-        // input keys
-        if (Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a"))
+        int speed = 1;
+        int dx = 0;
+        int dy = 0;
+        
+        //boolean verticalInput = false;
+        
+        if(Greenfoot.isKeyDown("left")||Greenfoot.isKeyDown("a"))
         {
             facing = "left";
-            swimVX -= swimAccel;
+            dx--;
         }
-        if (Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d"))
+        if(Greenfoot.isKeyDown("right")||Greenfoot.isKeyDown("d"))
         {
             facing = "right";
-            swimVX += swimAccel;
+            dx++;
         }
-        if (Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("w"))
+        if(Greenfoot.isKeyDown("up")||Greenfoot.isKeyDown("w"))
         {
-            swimVY -= swimAccel;
+            dy--;
+            //verticalInput = true;
         }
-        if (Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("s"))
+        if(Greenfoot.isKeyDown("down")||Greenfoot.isKeyDown("s"))
         {
-            swimVY += swimAccel;
-        }
-    
-        // add bouyancy
-        swimVY += buoyancy;
-    
-        // prevent speed from going too high
-        if (swimVX > swimMax) swimVX = swimMax;
-        if (swimVX < -swimMax) swimVX = -swimMax;
-        if (swimVY > swimMax) swimVY = swimMax;
-        if (swimVY < -swimMax) swimVY = -swimMax;
-    
-        // add drag to speed
-        swimVX *= swimDrag;
-        swimVY *= swimDrag;
-    
-        setLocation((int)(getX() + swimVX), getY());
-
-        if (isTouching(platforms1.class) || isTouching(platforms2.class)) {
-            setLocation(getX() - (int)Math.signum(swimVX), getY());
-            swimVX = 0;
+            dy++;
+            //verticalInput = true;
         }
         
-        setLocation(getX(), (int)(getY() + swimVY));
+        //if(!verticalInput) dy += 1;
         
-        if (isTouching(platforms1.class) || isTouching(platforms2.class)) {
-            setLocation(getX(), getY() - (int)Math.signum(swimVY));
-            swimVY = 0;
-        }
+        setLocation(getX() + dx * speed, getY() + dy * speed);
         
-        if (getX() < myWidth / 2)
-        {
-            setLocation(myWidth / 2, getY());
-            swimVX = 0;
-        }
-        if (getX() > worldWidth - myWidth / 2)
-        {
-            setLocation(worldWidth - myWidth / 2, getY());
-            swimVX = 0;
-        }
-        if (getY() < myHeight / 2)
-        {
-            setLocation(getX(), myHeight / 2);
-            swimVY = 0;
-        }
-        if (getY() > worldHeight - myHeight / 2)
-        {
-            setLocation(getX(), worldHeight - myHeight / 2);
-            swimVY = 0;
-        }
-    
-        
-        /*if (isTouching(platforms1.class) || isTouching(platforms2.class)) {
-            setLocation(getX() - stepX, getY());
-            swimVX = 0;
-        }
-        
-        if (isTouching(platforms1.class) || isTouching(platforms2.class)) {
-            setLocation(getX(), getY() - stepY);
-            swimVY = 0;
-        }*/
+        while(isTouching(platforms1.class) ||isTouching(platforms2.class)) setLocation(getX() - dx, getY() - dy);
     }
+
 
     private void moveHorizontal()
     {
@@ -335,7 +276,7 @@ public class Player extends Actor
     private void checkSpike()
     {
         if(dying) return;
-        if(isTouching(Spike.class))
+        if(isTouching(Spike.class)||isTouching(SpikeR.class))
         {
             dying = true;
             deathTimer.mark();

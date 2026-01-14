@@ -18,15 +18,20 @@ public class World5 extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(785, 448, 1, false); 
         setBackground("world5.png");
+        addObject(new SpawnPoint(),536 , 50); 
         
-        addObject(player, 536, 50);
+        addObject(player, 136, 130);
         prepare(player);
     }
     
     private void prepare(Player player)
     {
         //addObject(player, 536, 260);
-
+        //addObject(new SpawnPoint(), 536, 260);
+        addObject(new Portal(), 168, 184);
+        addObject(new Coin(false), 536, 408);
+        addObject(new Coin(true), 404, 134);
+        
         
         for(int i = 0; i < 5; i++)addObject(new platforms1(), 8 + i * 16, 56);
         for(int i = 0; i < 7; i++)addObject(new platforms1(), 40, 152 + i * 16);
@@ -38,9 +43,23 @@ public class World5 extends World
         for(int i = 0; i < 12; i++)addObject(new platforms1(), 88 + i * 16, 72);
         for(int i = 0; i < 2; i++)addObject(new platforms1(), 104 - i * 16, 104);
         addObject(new platforms1(), 104, 312);
+        for(int x = 0; x < 3; x++)for(int i = 0; i < 3; i++)addObject(new platforms1(), 104 + x * 16, 184 + i * 16);
+        addObject(new platforms1(), 120, 168);
+        for(int i = 0; i < 4; i++)addObject(new platforms1(), 120 + i * 16, 232);
         addObject(new platforms1(), 120, 88);
         addObject(new platforms1(), 120, 328);
+        for(int i = 0; i < 6; i++)addObject(new platforms1(), 136 + i * 16, 152);
+        for(int i = 0; i < 7; i++)addObject(new platforms1(), 136 + i * 16, 248);
+        addObject(new platforms1(), 152, 264);
+        addObject(new platforms1(), 152, 184);
+        for(int i = 0; i < 2; i++)addObject(new platforms1(), 168 + i * 16, 280);
         for(int i = 0; i < 3; i++)addObject(new platforms1(), 168 - i * 16, 344);
+        for(int i = 0; i < 5; i++)addObject(new platforms1(), 200 + i * 16, 296);
+        for(int i = 0; i < 3; i++)addObject(new platforms1(), 200 - i * 16, 168);
+        for(int i = 0; i < 3; i++)addObject(new platforms1(), 216, 232 - i * 16);
+        for(int i = 0; i < 2; i++)addObject(new platforms1(), 248 + i * 16, 232);
+        for(int i = 0; i < 12; i++)addObject(new platforms1(), 280, 280 - i * 16);
+        addObject(new platforms1(), 296, 104);
         for(int i = 0; i < 8; i++)addObject(new platforms1(), 296 - i * 16, 360);
         addObject(new platforms1(), 312, 344);
         for(int i = 0; i < 2; i++)addObject(new platforms1(), 328, 312 + i * 16);
@@ -77,7 +96,10 @@ public class World5 extends World
         for(int i = 0; i < 6; i++)addObject(new platforms1(), 776, 280 + i * 16);
         for(int y = 0; y < 2; y++)for(int i = 0; i < 14; i++)addObject(new platforms1(), 760 - i * 16, 392 + y * 16);
         for(int i = 0; i < 16; i++)addObject(new platforms1(), 776 - i * 16, 440);
+        
         addWater();
+        
+        addSpikes();
     }
     private void addWater()
     {
@@ -111,7 +133,65 @@ public class World5 extends World
         for(int i = 0; i < 9; i++)addObject(new Water(), 488, 232 - i * 16);
         for(int i = 0; i < 2; i++)addObject(new Water(), 504, 120 - i * 16);
     }
-    
+    private void addSpikes()
+    {
+        addSpikeRs();
+        addSpikeLs();
+        addSpikeUs();
+        addSpikeDs();
+    }
+    private void addSpikeRs()
+    {
+        for(int i = 0; i < 2; i++)addObject(new SpikeR(), 507, 104 + i * 16);
+        for(int i = 0; i < 7; i++)addObject(new SpikeR(), 491, 136 + i * 16);
+        for(int i = 0; i < 6; i++)addObject(new SpikeR(), 475, 248 + i * 16);
+        addObject(new SpikeR(), 410, 294);
+        for(int i = 0; i < 4; i++)addObject(new SpikeR(), 394, 278 - i * 16);
+        for(int i = 0; i < 6; i++)addObject(new SpikeR(), 410, 214 - i * 16);
+        addObject(new SpikeR(), 394, 118);
+        for(int i = 0; i < 10; i++)addObject(new SpikeR(), 330, 294 - i * 16);
+        for(int i = 0; i < 2; i++)addObject(new SpikeR(), 314, 310 + i * 16);
+        addObject(new SpikeR(), 154, 278);
+        addObject(new SpikeR(), 138, 262);
+        addObject(new SpikeR(), 122, 246);
+        addObject(new SpikeR(), 106, 230);
+        addObject(new SpikeR(), 90, 214);
+    }
+    private void addSpikeLs()
+    {
+        for(int i = 0; i < 7; i++)addObject(new SpikeL(), 453, 104 + i * 16);        
+        for(int i = 0; i < 6; i++)addObject(new SpikeL(), 437, 216 + i * 16);
+        addObject(new SpikeL(), 389, 328);
+        addObject(new SpikeL(), 373, 312);
+        for(int i = 0; i < 7; i++)addObject(new SpikeL(), 357, 296 - i * 16);
+        for(int i = 0; i < 2; i++)addObject(new SpikeL(), 373, 184 - i * 16);
+        addObject(new SpikeL(), 357, 152);
+        for(int i = 0; i < 11; i++)addObject(new SpikeL(), 293, 120 + i * 16);
+        addObject(new SpikeL(), 277, 296);
+        addObject(new SpikeL(), 117, 312);
+        addObject(new SpikeL(), 101, 296);
+        addObject(new SpikeL(), 85, 280);
+        addObject(new SpikeL(), 69, 264);
+        for(int i = 0; i < 7; i++)addObject(new SpikeL(), 53, 248 - i * 16);
+        for(int i = 0; i < 2; i++)addObject(new SpikeL(), 149, 200 + i * 16);
+    }
+    private void addSpikeUs()
+    {
+        for(int i = 0; i < 4; i++)addObject(new Spike(), 456 - i * 16, 346);
+        addObject(new Spike(), 343, 138);
+        for(int i = 0; i < 8; i++)addObject(new Spike(), 296 - i * 16, 346);
+        for(int i = 0; i < 3; i++)addObject(new Spike(), 168 - i * 16, 330);
+        for(int i = 0; i < 2; i++)addObject(new Spike(), 168 + i * 11, 138);
+        addObject(new Spike(), 200, 234);
+        addObject(new Spike(), 232, 234);
+    }
+    private void addSpikeDs()
+    {
+        addObject(new SpikeD(), 424, 310);
+        for(int i = 0; i < 5; i++)addObject(new SpikeD(), 376 - i * 16, 102);
+        for(int i = 0; i < 5; i++)addObject(new SpikeD(), 264 - i * 16, 310);
+        for(int i = 0; i < 2; i++)addObject(new SpikeD(), 184 - i * 16, 294);
+    }
     private boolean resetting = false;
     public void act()
     {
