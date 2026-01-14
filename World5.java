@@ -20,7 +20,7 @@ public class World5 extends World
         super(785, 448, 1, false); 
         setBackground("world5.png");
         
-        addObject(new Portal(), 560, 300);
+        //addObject(new Portal(), 560, 300);
         music.playLoop();
         prepare(player);
     }

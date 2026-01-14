@@ -19,7 +19,7 @@ public class World4 extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1537, 608, 1, false);  
         
-        addObject(new Portal(), 130, 260);//test portal
+        //addObject(new Portal(), 130, 260);//test portal
         music.playLoop();
         prepare(player);
     }

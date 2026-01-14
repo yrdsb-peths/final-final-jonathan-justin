@@ -19,7 +19,7 @@ public class World1 extends World
         super(305, 400, 1, false); 
         setBackground("world1.png");
         
-        addObject(new Portal(), 220, 365); // test portal
+        //addObject(new Portal(), 220, 365); // test portal
         music.playLoop();
         prepare();
         Coin.reset();

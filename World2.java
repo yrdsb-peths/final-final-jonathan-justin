@@ -20,7 +20,7 @@ public class World2 extends World
         super(801, 112, 1, false); 
         setBackground("world2.png");
         
-        addObject(new Portal(), 64, 70);//test portal
+        //addObject(new Portal(), 64, 70);//test portal
         music.playLoop();
         prepare(player);
     }
