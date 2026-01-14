@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class platforms2 extends Actor
 {
+    //16x8 slab platform
     public platforms2()
     {
         GreenfootImage image = new GreenfootImage(16, 8);

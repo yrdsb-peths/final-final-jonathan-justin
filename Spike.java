@@ -8,9 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Spike extends Actor
 {
+    //spike class
     GreenfootImage spike = new GreenfootImage("spike.png");
-    
-    
     public Spike(){
         setImage(spike);
     }

@@ -8,9 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Coin extends Actor
 {
+    //sprite variables
     SimpleTimer animationTimer = new SimpleTimer();
     GreenfootImage[] coin = new GreenfootImage[10];
     
+    //necessary variables
     double velocityY = 0;
     double gravity = 1;
     boolean collected = false;
@@ -18,7 +20,9 @@ public class Coin extends Actor
     static int numOfCoins=0;
     boolean visibleOnStart;
     static int previousCoins = 0;
+    int coinIndex = 0;
     
+    //contructor with option to make invisible
     public Coin(boolean visibleOnStart)
     {
         this.visibleOnStart = visibleOnStart;
@@ -35,11 +39,8 @@ public class Coin extends Actor
         if(!visibleOnStart)getImage().setTransparency(0);
     }
     
-    int coinIndex = 0;
-    /**
-     * Act - do whatever the Coin wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    
+    //animate the coin
     public void animateCoin()
     {
         // Add your action code here.
@@ -53,6 +54,7 @@ public class Coin extends Actor
         
         getImage().setTransparency(currentTransparency);
     }
+    //function to keep track of coins saved(after portal) and current coins from the world
     public static void saveCoinCount(){
         previousCoins = numOfCoins;
     }
@@ -68,6 +70,23 @@ public class Coin extends Actor
     public static void resetCheckpoint(){
         numOfCoins = previousCoins;
     }
+    //animate coin if collected
+    public void collect()
+    {
+        if(!collected)
+        {
+            collected = true;
+            velocityY = -8;
+            getImage().setTransparency(255);
+        }
+    }
+    //add gravity to coin so it drops
+    private void applyGravity()
+    {
+        velocityY += gravity;
+        setLocation(getX(), (int)(getY()+velocityY));
+    }
+    //apply collection animation if collected
     public void act()
     {
         animateCoin();
@@ -81,19 +100,5 @@ public class Coin extends Actor
                 numOfCoins++;
             }
         }
-    }
-    public void collect()
-    {
-        if(!collected)
-        {
-            collected = true;
-            velocityY = -8;
-            getImage().setTransparency(255);
-        }
-    }
-    private void applyGravity()
-    {
-        velocityY += gravity;
-        setLocation(getX(), (int)(getY()+velocityY));
     }
 }

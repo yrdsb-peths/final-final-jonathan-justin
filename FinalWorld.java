@@ -10,11 +10,11 @@ public class FinalWorld extends World
 {
 
     /**
-     * Constructor for objects of class congradulations.
+     * Constructor for objects of class FinalWorld.
      * 
      */
     public FinalWorld(Player player)
-    {    
+    {   
         super(385, 320, 1, false); 
         setBackground("finalworld.png");
         prepare(player);
@@ -22,7 +22,9 @@ public class FinalWorld extends World
     
     private void prepare(Player player)
     {
+        
         addObject(player, 50, 50);
+        //add ground platforms
         for(int i = 0; i < 5; i++)addObject(new platforms1(), 8 + i * 16, 264);
         for(int i = 0; i < 10; i++)addObject(new platforms1(), 120 + i * 16, 264);
         for(int i = 0; i < 5; i++)addObject(new platforms1(), 376 - i *16, 264);
@@ -33,6 +35,7 @@ public class FinalWorld extends World
         for(int i = 0; i<4; i++)addObject(new platforms1(), 312 - i*16,296);
         addObject(new platforms1(), 312, 280);
         
+        //add individual small slab platforms on top
         addObject(new platforms2(), 8, 214);
         addObject(new platforms2(), 40, 214);
         addObject(new platforms2(), 72, 214);
@@ -46,6 +49,7 @@ public class FinalWorld extends World
         addObject(new platforms2(), 344, 214);
         addObject(new platforms2(), 376, 214);
         
+        //3rd layer of double slabs on top
         for(int i = 0; i<2; i++)addObject(new platforms2(), 8+i*16, 164);
         for(int i = 0; i<2; i++)addObject(new platforms2(), 56+i*16, 164);
         for(int i = 0; i<2; i++)addObject(new platforms2(), 120+i*16, 164);
@@ -55,7 +59,11 @@ public class FinalWorld extends World
         for(int i = 0; i<2; i++)addObject(new platforms2(), 312+i*16, 164);
         for(int i = 0; i<2; i++)addObject(new platforms2(), 360+i*16, 164);
         
+        //water
         for(int i = 0; i<2; i++)addObject(new Water(), 88+i*16, 264);
         for(int i = 0; i<2; i++)addObject(new Water(), 88+i*16, 280);
+        for(int i = 0; i<2; i++)addObject(new Water(), 280+i*16, 264);
+        for(int i = 0; i<2; i++)addObject(new Water(), 280+i*16, 280);
+        
     }
 }

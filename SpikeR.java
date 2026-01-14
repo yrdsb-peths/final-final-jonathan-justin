@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class SpikeR extends Actor
 {
+    //spike facing right class
     GreenfootImage spike = new GreenfootImage("spike.png");
     
     

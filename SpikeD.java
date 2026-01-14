@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class SpikeD extends Actor
 {
+    //upside down spike class
     GreenfootImage spike = new GreenfootImage("spike.png");
     
     

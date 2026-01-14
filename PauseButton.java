@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PauseButton extends Actor
 {
+    //add "pause button" in the top left
     GreenfootImage pause = new GreenfootImage("pause.png");
     public PauseButton(){
         setImage(pause);

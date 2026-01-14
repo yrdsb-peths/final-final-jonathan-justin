@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class World4 extends World
 {
-
+    private boolean resetting = false;
     /**
      * Constructor for objects of class World4.
      * 
@@ -19,13 +19,14 @@ public class World4 extends World
         super(1537, 608, 1, false); 
         setBackground("world4.png");
         
-        addObject(new Portal(), 130, 260);
+        //addObject(new Portal(), 130, 260);//test portal
         
         prepare(player);
     }
     
     private void prepare(Player player)
     {
+        //add starting objects
         addObject(new SpawnPoint(), 160, 260);
         addObject(player, 160, 260); 
         addObject(new Portal(), 1528, 248);
@@ -34,8 +35,10 @@ public class World4 extends World
         addObject(new Coin(false), 632, 120);
         addObject(new Coin(false), 1320, 344);
         
+        //add anti-cheese
         addObject(new Spike(), 1190, 234);
         
+        //add first island
         for(int i = 0; i<13;i++) addObject(new platforms1(), 120 + i*16, 280);
         addObject(new platforms1(), 120, 296);
         addObject(new platforms1(), 136, 328);
@@ -50,6 +53,8 @@ public class World4 extends World
         for(int i = 0; i<2; i++) addObject(new platforms1(), 312 + i*16, 296);
         addObject(new platforms1(), 312, 312);
         
+        
+        //add first half of water and bottom void
         for(int i = 0; i< 96; i++) addObject(new theVoid(), 8+i*16, 620);
         for(int i = 0; i < 7 ;i++) addObject(new Water(), 8 + i*16, 280);
         for(int i = 0; i < 7 ;i++) addObject(new Water(), 8 + i*16, 296);
@@ -93,6 +98,7 @@ public class World4 extends World
         for(int i = 0; i < 4;i++) addObject(new Water(), 904 + i*16, 296);
         for(int i = 0; i < 4;i++) addObject(new Water(), 904 + i*16, 280);
         
+        //add bottom left platforms
         for(int i = 0; i<2; i++) addObject(new platforms1(), 8 + i*16, 504);
         for(int i = 0; i<2; i++) addObject(new platforms1(), 24 + i*16, 520);
         for(int i = 0; i<3; i++) addObject(new platforms1(), 40 + i*16, 536);
@@ -101,6 +107,7 @@ public class World4 extends World
         for(int i = 0; i<3; i++) addObject(new platforms1(), 216 + i*16, 584);
         for(int i = 0; i<2; i++) addObject(new platforms1(), 248 + i*16, 600);
         
+        //add tunnel platforms
         for(int i = 0; i<5; i++) addObject(new platforms1(), 440 + i*16, 600);
         for(int i = 0; i<3; i++) addObject(new platforms1(), 504 + i*16, 584);
         for(int i = 0; i<3; i++) addObject(new platforms1(), 536 + i*16, 568);
@@ -202,6 +209,7 @@ public class World4 extends World
         for(int i = 0; i<3; i++) addObject(new platforms1(), 1416 + i*16, 520);
         addObject(new platforms1(), 1432, 536);
         
+        //add second half of tunnel platforms
         for(int i = 0; i<2; i++) addObject(new platforms1(), 1352 + i*16, 552);
         for(int i = 0; i<2; i++) addObject(new platforms1(), 1368 + i*16, 568);
         for(int i = 0; i<6; i++) addObject(new platforms1(), 1384 + i*16, 584);
@@ -251,6 +259,7 @@ public class World4 extends World
         addObject(new platforms1(), 1128, 472);
         addObject(new platforms1(), 1128, 456);
         
+        //add island
         addObject(new platforms1(),1528,344);
         for(int i = 0; i<3; i++) addObject(new platforms1(), 1496 + i*16, 328);
         for(int i = 0; i<2; i++) addObject(new platforms1(), 1480 + i*16, 312);
@@ -260,6 +269,7 @@ public class World4 extends World
         for(int i = 0; i<4; i++) addObject(new platforms1(), 1448 + i*16, 248);
         for(int i = 0; i<3; i++) addObject(new platforms1(), 1496 + i*16, 264);
         
+        //add iceberg
         addObject(new platforms1(), 552, 296);
         for(int i = 0; i<2; i++) addObject(new platforms1(), 552 + i*16, 312);
         addObject(new platforms1(), 568, 328);
@@ -304,6 +314,7 @@ public class World4 extends World
         for(int i = 0; i<2; i++)addObject(new platforms1(), 520, 248 - i*16);
         for(int i = 0; i<3; i++)addObject(new platforms1(), 536, 248 + i*16);
         
+        //add remaining water inside tunnels
         for(int i = 0; i<18;i++)addObject(new Water(), 1256+i*16,600);
         for(int i = 0; i<6;i++)addObject(new Water(), 1288+i*16, 584);
         for(int i = 0; i<5;i++)addObject(new Water(), 1288+i*16, 568);
@@ -393,9 +404,8 @@ public class World4 extends World
         for(int i = 0; i<3;i++)addObject(new Water(), 1432+i*16, 312);
         for(int i = 0; i<4;i++)addObject(new Water(), 1400+i*16, 296);
         for(int i = 0; i<3;i++)addObject(new Water(), 1384+i*16, 280);
-        
     }
-    private boolean resetting = false;
+    //reset coins on death
     public void act()
     {
         if (Player.getDeath() && !resetting)

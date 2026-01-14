@@ -8,16 +8,34 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends Actor
 {
+    //animation sprite variables
     GreenfootImage[] idlePlayerRight = new GreenfootImage[4];
     GreenfootImage[] idlePlayerLeft = new GreenfootImage[4];
     GreenfootImage[] movePlayerRight = new GreenfootImage[16];
     GreenfootImage[] movePlayerLeft = new GreenfootImage[16];
     
+    //change which side character is facing based on input
     String facing = "right";
     SimpleTimer animationTimer = new SimpleTimer();
     
+    //all variables
     int numOfCoins = 0;
     static boolean isDying = false; 
+    int walkIndex = 0;
+    int idleIndex = 0;
+    static final int GRAVITY = 1;
+    static final int JUMP_FORCE = 11;
+    int xSpeed = 3;
+    int ySpeed = 0;
+    int numOfDeaths = 0;
+    boolean dying = false;
+    SimpleTimer deathTimer = new SimpleTimer();
+    static final int DEATH_DELAY = 500;
+    GreenfootImage[] idleDeadRight = new GreenfootImage[4];
+    GreenfootImage[] idleDeadLeft = new GreenfootImage[4];
+    boolean touchingWater = false;
+    
+    //constructor for animation
     public Player()
     {  
         for(int i = 0; i < movePlayerRight.length; i++)
@@ -63,8 +81,7 @@ public class Player extends Actor
         setImage(idlePlayerRight[0]);
     }
     
-    int walkIndex = 0;
-    int idleIndex = 0;
+    //animate player based off of input
     public void animatePlayer()
     {
         if(animationTimer.millisElapsed()<100) return;
@@ -99,42 +116,7 @@ public class Player extends Actor
         }
     }
     
-    static final int GRAVITY = 1;
-    static final int JUMP_FORCE = 11;
-    int xSpeed = 3;
-    int ySpeed = 0;
-    int numOfDeaths = 0;
-    public void act()
-    {
-        if(!dying)
-        {
-            if(touchingWater){
-                swimMove();
-            }
-            else{
-                moveHorizontal();
-                moveVertically(); 
-            }
-            animatePlayer();
-            teleport();
-            collectCoin();
-            checkVoid();
-        }
-        checkWater();
-        numOfCoins = Coin.coinCount();
-        checkSpike();
-        handleDeath();
-        if(getWorld() instanceof FinalWorld){
-            getWorld().showText("Congratulations for beating the game!", 200, 30);
-            getWorld().showText("Stats: ", 200, 64);
-            getWorld().showText("Coins Collected: " + numOfCoins + "/15", 200, 100);
-            getWorld().showText("Deaths: "+numOfDeaths, 200, 130);
-        }
-        else{
-            getWorld().showText("Coins: " + numOfCoins, getWorld().getWidth() - 60, 8);
-        }
-    }
-    
+    //move function for underwater
     private void swimMove()
     {
         int speed = 1;
@@ -171,7 +153,7 @@ public class Player extends Actor
         while(isTouching(platforms1.class) ||isTouching(platforms2.class)) setLocation(getX() - dx, getY() - dy);
     }
 
-
+    //horizontal movement function
     private void moveHorizontal()
     {
         int worldWidth = getWorld().getWidth();
@@ -195,6 +177,7 @@ public class Player extends Actor
         while(getOneIntersectingObject(platforms1.class) != null||getOneIntersectingObject(platforms2.class) != null) setLocation(getX() - dx, getY());
     }
     
+    //vertical movement function
     private void moveVertically()
     {
         int worldHeight = getWorld().getHeight();
@@ -221,6 +204,8 @@ public class Player extends Actor
         }
         if (onGround && (Greenfoot.isKeyDown("up")||Greenfoot.isKeyDown("w")||Greenfoot.isKeyDown("space"))) ySpeed = -JUMP_FORCE;
     }
+    
+    //teleport to new world if touching a portal
     public void teleport()
     {
         if(!isTouching(Portal.class)) return;
@@ -249,6 +234,7 @@ public class Player extends Actor
             Greenfoot.setWorld(new FinalWorld(player));
         }
     }
+    //teleport back to the spawn point if touching the void(not a death)
     private void checkVoid()
     {
         if(isTouching(theVoid.class))
@@ -259,6 +245,8 @@ public class Player extends Actor
         }
         
     }
+    
+    //collect coin if touching one
     private void collectCoin()
     {
         Coin coin = (Coin) getOneIntersectingObject(Coin.class);
@@ -267,12 +255,8 @@ public class Player extends Actor
             coin.collect();
         }
     }
-    boolean dying = false;
-    SimpleTimer deathTimer = new SimpleTimer();
-    static final int DEATH_DELAY = 500;
-    GreenfootImage[] idleDeadRight = new GreenfootImage[4];
-    GreenfootImage[] idleDeadLeft = new GreenfootImage[4];
     
+    //kill character if touching a spike
     private void checkSpike()
     {
         if(dying) return;
@@ -288,7 +272,8 @@ public class Player extends Actor
             else setImage(idleDeadLeft[frame]);
         }
     }
-    boolean touchingWater = false;
+    
+    //change to swimming if character touching water
     private void checkWater()
     {
         if(isTouching(Water.class))
@@ -300,9 +285,11 @@ public class Player extends Actor
         }
     }
     
+    //check death status for other classes
     public static boolean getDeath(){
         return isDying;
     }
+    //animate character on death, reset coins and respawn on death
     private void handleDeath()
     {
         if(!dying) {
@@ -325,6 +312,38 @@ public class Player extends Actor
             numOfDeaths++;
             if(facing.equals("right"))setImage(idlePlayerRight[0]);
             else setImage(idlePlayerLeft[0]);
+        }
+    }
+    public void act()
+    {
+        //move character based off current conditions and touching classes
+        if(!dying)
+        {
+            if(touchingWater){
+                swimMove();
+            }
+            else{
+                moveHorizontal();
+                moveVertically(); 
+            }
+            animatePlayer();
+            teleport();
+            collectCoin();
+            checkVoid();
+        }
+        checkWater();
+        numOfCoins = Coin.coinCount();
+        checkSpike();
+        handleDeath();
+        //show coin counter/stats depending on world
+        if(getWorld() instanceof FinalWorld){
+            getWorld().showText("Congratulations for beating the game!", 200, 30);
+            getWorld().showText("Stats: ", 200, 64);
+            getWorld().showText("Coins Collected: " + numOfCoins + "/15", 200, 100);
+            getWorld().showText("Deaths: "+numOfDeaths, 200, 130);
+        }
+        else{
+            getWorld().showText("Coins: " + numOfCoins, getWorld().getWidth() - 60, 8);
         }
     }
 }

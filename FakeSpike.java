@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class FakeSpike extends Actor
 {
+    //fake spike class(used in world3)
     GreenfootImage spike = new GreenfootImage("spike.png");
     
     

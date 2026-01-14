@@ -10,6 +10,7 @@ public class SpawnPoint extends Actor
 {
     public SpawnPoint()
     {
+        //spawn point for simple respawning
         GreenfootImage img = new GreenfootImage(16, 16);
         img.setColor(Color.YELLOW);
         img.fill();
