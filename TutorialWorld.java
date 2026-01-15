@@ -10,7 +10,7 @@ public class TutorialWorld extends World
 {
     //reset world and music variables
     private boolean resetting = false;
-    private GreenfootSound music = new GreenfootSound("world1.mp3");
+    private GreenfootSound music = new GreenfootSound("tutorial.mp3");
     
     /**
      * Constructor for objects of class TutorialWorld.

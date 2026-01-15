@@ -4,10 +4,10 @@ import greenfoot.*;
  */
 public class MyWorld extends World {
     /**
-     * sets the world to the first level
+     * sets the world to the first levelt
      */
     public MyWorld() {
         super(305, 400, 1, false);
-        Greenfoot.setWorld(new TutorialWorld());
+        Greenfoot.setWorld(new TitlePage());
     }
 }
