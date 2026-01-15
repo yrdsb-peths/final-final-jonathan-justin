@@ -8,35 +8,29 @@ public class World1 extends World
 {
     //adding music
     private GreenfootSound music = new GreenfootSound("world1.mp3");
+    
     /**
      * Constructor for objects of class World1.
      * 
      */
-    public World1()
+    public World1(Player player)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(305, 400, 1, false); 
-        setBackground("world1.png");
         
         //addObject(new Portal(), 220, 365); // test portal
         music.playLoop();
-        prepare();
-        Coin.reset();
+        prepare(player);
     }
-    /**
-     * stop music, call when leaving world
-     */
-    public void stopMusic() {
-        music.stop();
-    }
+    
     /**
      * add all elements to the world
      */
-    private void prepare()
+    private void prepare(Player player)
     {
         //add all necessary objects
-        Player player = new Player();
-        addObject(player, 180, getHeight() - 25);
+        setBackground("world1.png");
+        addObject(player, 180, 375);
         
         addBasics();
         
@@ -61,6 +55,13 @@ public class World1 extends World
     {
         addFloor();
         addPlatforms();
+    }
+    
+    /**
+     * stop music, call when leaving world
+     */
+    public void stopMusic() {
+        music.stop();
     }
     
     /**
@@ -116,14 +117,5 @@ public class World1 extends World
     {
         addObject(new Coin(false), 8, 390);
         addObject(new Coin(true), 299, 200);
-    }
-    
-    /**
-     * reset world when player dies
-     */
-    public void act(){
-        if(Player.getDeath()){
-            prepare();
-        }
     }
 }

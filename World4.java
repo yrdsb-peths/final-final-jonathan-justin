@@ -8,6 +8,7 @@ public class World4 extends World
     //reset and music variables
     private boolean resetting = false;
     private GreenfootSound music = new GreenfootSound("world4.mp3");
+    
     /**
      * Constructor for objects of class World4.
      * 

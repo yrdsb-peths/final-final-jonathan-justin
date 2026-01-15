@@ -215,7 +215,7 @@ public class World5 extends World
         addObject(new SpikeL(), 389, 328);
         addObject(new SpikeL(), 373, 312);
         for(int i = 0; i < 7; i++)addObject(new SpikeL(), 357, 296 - i * 16);
-        for(int i = 0; i < 2; i++)addObject(new SpikeL(), 373, 184 - i * 16);
+        for(int i = 0; i < 2; i++)addObject(new SpikeL(), 373, 185 - i * 16);
         addObject(new SpikeL(), 357, 152);
         for(int i = 0; i < 11; i++)addObject(new SpikeL(), 293, 120 + i * 16);
         addObject(new SpikeL(), 277, 296);

@@ -155,8 +155,6 @@ public class Player extends Actor
         int dx = 0;
         int dy = 0;
         
-        //boolean verticalInput = false;
-        
         if(Greenfoot.isKeyDown("left")||Greenfoot.isKeyDown("a"))
         {
             facing = "left";
@@ -170,15 +168,11 @@ public class Player extends Actor
         if(Greenfoot.isKeyDown("up")||Greenfoot.isKeyDown("w")||Greenfoot.isKeyDown("space"))
         {
             dy--;
-            //verticalInput = true;
         }
         if(Greenfoot.isKeyDown("down")||Greenfoot.isKeyDown("s")||Greenfoot.isKeyDown("shift"))
         {
             dy++;
-            //verticalInput = true;
         }
-        
-        //if(!verticalInput) dy += 1;
         
         setLocation(getX() + dx * speed, getY());
         while(isTouching(platforms1.class) ||isTouching(platforms2.class)) setLocation(getX() - dx, getY());
@@ -261,7 +255,12 @@ public class Player extends Actor
         World current = getWorld();
         Player player = this;
         Coin.saveCoinCount();
-        if (current instanceof World1)
+        if (current instanceof TutorialWorld)
+        {
+            ((TutorialWorld) current).stopMusic();
+            Greenfoot.setWorld(new World1(player));
+        }
+        else if (current instanceof World1)
         {
             ((World1) current).stopMusic();
             Greenfoot.setWorld(new World2(player));
@@ -395,6 +394,22 @@ public class Player extends Actor
         }
     }
     
+    /**
+     * returns the number of coins collected
+     */
+    public int getNumOfCoins()
+    {
+        return numOfCoins;
+    }
+    
+    /**
+     * returns the number of deaths accumulated
+     */
+    public int getNumOfDeaths()
+    {
+        return numOfDeaths;
+    }
+    
     public void act()
     {
         checkWater();
@@ -419,14 +434,6 @@ public class Player extends Actor
         checkSpike();
         handleDeath();
         //show coin counter/stats depending on world
-        if(getWorld() instanceof FinalWorld){
-            getWorld().showText("Congratulations for beating the game!", 200, 30);
-            getWorld().showText("Stats: ", 200, 64);
-            getWorld().showText("Coins Collected: " + numOfCoins + "/15", 200, 100);
-            getWorld().showText("Deaths: "+numOfDeaths, 200, 130);
-        }
-        else{
-            getWorld().showText("Coins: " + numOfCoins, getWorld().getWidth() - 60, 8);
-        }
+        if(!(getWorld() instanceof FinalWorld))getWorld().showText("Coins: " + numOfCoins, getWorld().getWidth() - 60, 8);
     }
 }

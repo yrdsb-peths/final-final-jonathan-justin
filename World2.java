@@ -8,6 +8,7 @@ public class World2 extends World
     //reset world and music variables
     private boolean resetting = false;
     private GreenfootSound music = new GreenfootSound("world2.mp3");
+    
     /**
      * Constructor for objects of class World2.
      * 
@@ -16,18 +17,19 @@ public class World2 extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(801, 112, 1, false); 
-        setBackground("world2.png");
         
         //addObject(new Portal(), 64, 70);//test portal
         music.playLoop();
         prepare(player);
     }
+    
     /**
      * stop music when leaving world
      */
     public void stopMusic() {
         music.stop();
     }
+    
     /**
      * prepare the world
      * @param player use the existing player to continue playing
@@ -35,6 +37,7 @@ public class World2 extends World
     private void prepare(Player player)
     {
         addObject(player, 8, 56);
+        setBackground("world2.png");
         
         addBasics();
         
@@ -42,6 +45,7 @@ public class World2 extends World
         addGround();
         addSpikes();        
     }
+    
     /**
      * add all platforms in the world
      */
