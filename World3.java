@@ -14,9 +14,10 @@ public class World3 extends World
      */
     public World3(Player player)
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        //add all necessary objects
         super(513, 512, 1, false);
-        //addObject(new Portal(), 0, 400);//test portal
+        
+        //addObject(new Portal(), 0, 400); //test portal
         music.playLoop();
         prepare(player);
     }

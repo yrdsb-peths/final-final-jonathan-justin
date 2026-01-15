@@ -18,7 +18,7 @@ public class World2 extends World
         //add all necessary objects
         super(801, 112, 1, false); 
         
-        addObject(new Portal(), 64, 70);//test portal
+        //addObject(new Portal(), 64, 70); //test portal
         music.playLoop();
         prepare(player);
     }

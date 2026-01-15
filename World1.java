@@ -15,7 +15,7 @@ public class World1 extends World
      */
     public World1(Player player)
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        //add all necessary objects
         super(305, 400, 1, false); 
         
         //addObject(new Portal(), 220, 365); // test portal

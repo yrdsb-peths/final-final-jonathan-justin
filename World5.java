@@ -18,7 +18,7 @@ public class World5 extends World
         //add all necessary objects
         super(785, 448, 1, false); 
         
-        addObject(new Portal(), 560, 300); //test portal
+        //addObject(new Portal(), 560, 300); //test portal
         music.playLoop();
         prepare(player);
     }

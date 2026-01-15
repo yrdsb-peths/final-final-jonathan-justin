@@ -18,12 +18,12 @@ public class TutorialWorld extends World
      */
     public TutorialWorld()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        //add all necessary objects
         super(641, 256, 1, false); 
         Player player = new Player();
         addObject(player, 8, 216);
         
-        addObject(new Portal(), 168, 216); 
+        //addObject(new Portal(), 168, 216); //test portal
         
         music.playLoop();
         
