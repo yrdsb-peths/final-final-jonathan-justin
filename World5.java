@@ -15,10 +15,10 @@ public class World5 extends World
      */
     public World5(Player player)
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        //add all necessary objects
         super(785, 448, 1, false); 
         
-        //addObject(new Portal(), 560, 300);
+        addObject(new Portal(), 560, 300); //test portal
         music.playLoop();
         prepare(player);
     }

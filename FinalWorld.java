@@ -30,6 +30,8 @@ public class FinalWorld extends World
     {
         addObject(player, 50, 50);
         
+        showStats(player);
+        
         addLand();
         addWater();
     }

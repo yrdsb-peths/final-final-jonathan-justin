@@ -20,6 +20,10 @@ public class TutorialWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(641, 256, 1, false); 
+        Player player = new Player();
+        addObject(player, 8, 216);
+        
+        addObject(new Portal(), 168, 216); 
         
         music.playLoop();
         
@@ -40,8 +44,6 @@ public class TutorialWorld extends World
      */
     private void prepare()
     {
-        Player player = new Player();
-        addObject(player, 8, 216);
         setBackground("tutorial.png");
         
         addBasics();

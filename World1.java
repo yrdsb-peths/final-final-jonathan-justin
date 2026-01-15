@@ -32,6 +32,8 @@ public class World1 extends World
         setBackground("world1.png");
         addObject(player, 180, 375);
         
+        addObject(new Portal(), 230, 375); //test portal
+        
         addBasics();
         
         addCoins();

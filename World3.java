@@ -32,8 +32,11 @@ public class World3 extends World
      */
     private void prepare(Player player)
     {
+        //add all necessary objects
         addObject(player, 50, 400);
         setBackground("world3.png");
+        
+        addObject(new Portal(), 8, 400); //test portal
         
         addBasics();
         
