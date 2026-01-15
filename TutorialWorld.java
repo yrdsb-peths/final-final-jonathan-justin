@@ -20,8 +20,7 @@ public class TutorialWorld extends World
     {    
         //add all necessary objects
         super(641, 256, 1, false); 
-        Player player = new Player();
-        addObject(player, 8, 216);
+        
         
         //addObject(new Portal(), 168, 216); //test portal
         
@@ -45,7 +44,8 @@ public class TutorialWorld extends World
     private void prepare()
     {
         setBackground("tutorial.png");
-        
+        Player player = new Player();
+        addObject(player, 8, 216);
         addBasics();
         showText();
         
