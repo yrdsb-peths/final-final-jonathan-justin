@@ -1,20 +1,5 @@
-# Set up Greenfoot for VSCode
+# Leap Saga
+Leap Saga is a platformer game, where you, the player need to navigate to a portal to teleport between worlds. There are a total of 8 worlds; 1 title screen, 1 start and end of game, and 5 worlds of actual gameplay. Each of these worlds have hidden coins in them, where you must find in order to beat the game 100%, the easier goal simply beating all 5 main levels. The controls work with arrow keys and WASD + 'space' and 'shift'. There are test portals within the constructors of each world excluding the title screen (TitlePage) and the final world (FinalWorld). Simply remove the comment hiding these portals and there will be an easy passageway through worlds.
 
-[Mac]
-1. Open `Finder` and navigate to the Applications folder.
-2. Right-click on the Greenfoot app and select `Show Package Contents`.
-3. In the opened folder, go to `Contents -> Resources -> Java` and find the `greenfoot.jar` file.
-4. Copy this `greenfoot.jar` to the `/lib` Folder in this project.
-
-[Windows]
-1. Open `File Explorer` and navigate to `C:\Program Files\Greenfoot` and locate the `greenfoot.jar` file.
-2. Copy this `greenfoot.jar` to the `\lib` Folder in this project.
-
-<br>
-<br>
-
-# project.greenfoot
-Copy the `project.greenfoot.md` file and rename it to `project.greenfoot`
-
-# Learn Markdown Basics
-[Markdown basics](https://www.markdownguide.org/getting-started/)
+Made by Jonathan Xu and Justin Li
+January 14, 2026
