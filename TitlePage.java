@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class TitlePage extends World
 {
+    //add music variable
     GreenfootSound music = new GreenfootSound("titlepage.mp3");
     
     /**
@@ -23,6 +24,9 @@ public class TitlePage extends World
         prepare();
     }
     
+    /**
+     * stops the music once the user presses 'space'
+     */
     private void stopMusic()
     {
         music.stop();

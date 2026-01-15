@@ -4,7 +4,7 @@ import greenfoot.*;
  */
 public class MyWorld extends World {
     /**
-     * sets the world to the first levelt
+     * sets the world to the first level
      */
     public MyWorld() {
         super(305, 400, 1, false);
