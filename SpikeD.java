@@ -11,17 +11,13 @@ public class SpikeD extends Actor
     //upside down spike class
     GreenfootImage spike = new GreenfootImage("spike.png");
     
-    
+    /**
+     * constructor for a spike
+     * rotated 180 degrees to face downwards
+     * kills player
+     */
     public SpikeD(){
         setImage(spike);
         getImage().rotate(180);
-    }
-    /**
-     * Act - do whatever the SpikeD wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
-    {
-        // Add your action code here.
     }
 }

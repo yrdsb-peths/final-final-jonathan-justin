@@ -8,6 +8,7 @@ public class World5 extends World
     //reset and music variables
     private boolean resetting = false;
     private GreenfootSound music = new GreenfootSound("world5.mp3");
+    
     /**
      * Constructor for objects of class World5.
      * 
@@ -16,18 +17,19 @@ public class World5 extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(785, 448, 1, false); 
-        setBackground("world5.png");
         
         //addObject(new Portal(), 560, 300);
         music.playLoop();
         prepare(player);
     }
+    
     /**
      * stop music when leaving world
      */
     public void stopMusic() {
         music.stop();
     }
+    
     /**
      * prepare the world, add all the land
      * @param player use the existing player to continue playing
@@ -35,13 +37,41 @@ public class World5 extends World
     private void prepare(Player player)
     {
         addObject(player, 536, 260);
-        addObject(new SpawnPoint(), 536, 260);
-        addObject(new Portal(), 168, 184);
+        setBackground("world5.png");
+        
+        addBasics();
+        
+        addCoins();
+        addSpikes();
+        
+        addLand();
+        addWater();
+    }
+    
+    /**
+     * add coins to the map
+     */
+    private void addCoins()
+    {
         addObject(new Coin(false), 536, 408);
         addObject(new Coin(true), 404, 134);
+    }
+    
+    /**
+     * basic world necessities
+     */
+    private void addBasics()
+    {
+        addObject(new SpawnPoint(), 536, 260);
+        addObject(new Portal(), 168, 184);
         addObject(new PauseButton(), 10, 10);
-        
-        
+    }
+    
+    /**
+     * add all the land hitboxes to the map
+     */
+    private void addLand()
+    {
         for(int i = 0; i < 5; i++)addObject(new platforms1(), 8 + i * 16, 56);
         for(int i = 0; i < 7; i++)addObject(new platforms1(), 40, 152 + i * 16);
         addObject(new platforms1(), 56, 136);
@@ -105,11 +135,8 @@ public class World5 extends World
         for(int i = 0; i < 6; i++)addObject(new platforms1(), 776, 280 + i * 16);
         for(int y = 0; y < 2; y++)for(int i = 0; i < 14; i++)addObject(new platforms1(), 760 - i * 16, 392 + y * 16);
         for(int i = 0; i < 16; i++)addObject(new platforms1(), 776 - i * 16, 440);
-        
-        addWater();
-        
-        addSpikes();
     }
+    
     /**
      * add all the water on the map
      */
@@ -145,6 +172,7 @@ public class World5 extends World
         for(int i = 0; i < 9; i++)addObject(new Water(), 488, 232 - i * 16);
         for(int i = 0; i < 2; i++)addObject(new Water(), 504, 120 - i * 16);
     }
+    
     /**
      * add all spikes
      */
@@ -155,8 +183,9 @@ public class World5 extends World
         addSpikeUs();
         addSpikeDs();
     }
+    
     /**
-     * add all right facing spikes
+     * add all right spikes (facing left)
      */
     private void addSpikeRs()
     {
@@ -175,8 +204,9 @@ public class World5 extends World
         addObject(new SpikeR(), 106, 230);
         addObject(new SpikeR(), 90, 214);
     }
+    
     /**
-     * add all left facing spikes
+     * add all left spikes (facing right)
      */
     private void addSpikeLs()
     {
@@ -196,8 +226,9 @@ public class World5 extends World
         for(int i = 0; i < 7; i++)addObject(new SpikeL(), 53, 248 - i * 16);
         for(int i = 0; i < 2; i++)addObject(new SpikeL(), 149, 200 + i * 16);
     }
+    
     /**
-     * add all regular spikes
+     * add all regular spikes (facing up)
      */
     private void addSpikeUs()
     {
@@ -209,8 +240,9 @@ public class World5 extends World
         addObject(new Spike(), 200, 234);
         addObject(new Spike(), 232, 234);
     }
+    
     /**
-     * add all upside down spikes
+     * add all down spikes (facing down)
      */
     private void addSpikeDs()
     {
@@ -219,6 +251,7 @@ public class World5 extends World
         for(int i = 0; i < 5; i++)addObject(new SpikeD(), 264 - i * 16, 310);
         for(int i = 0; i < 2; i++)addObject(new SpikeD(), 184 - i * 16, 294);
     }
+    
     /**
      * reset world on player death
      */

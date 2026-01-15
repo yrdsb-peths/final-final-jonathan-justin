@@ -11,16 +11,12 @@ public class FakeSpike extends Actor
     //fake spike class(used in world3)
     GreenfootImage spike = new GreenfootImage("spike.png");
     
-    
+    /**
+     * sets the image of the fake spike to match the real spike
+     * does not kill player
+     * used for secret coins
+     */
     public FakeSpike(){
         setImage(spike);
-    }
-    /**
-     * Act - do whatever the Spike wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
-    {
-        // Add your action code here.
     }
 }

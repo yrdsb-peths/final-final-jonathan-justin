@@ -22,7 +22,10 @@ public class Coin extends Actor
     static int previousCoins = 0;
     int coinIndex = 0;
     
-    //contructor with option to make invisible
+    /**
+     * constructor for Coin
+     * @param controls whether the coin is visible(true) or invisible(false)
+     */
     public Coin(boolean visibleOnStart)
     {
         this.visibleOnStart = visibleOnStart;
@@ -40,7 +43,9 @@ public class Coin extends Actor
     }
     
     
-    //animate the coin
+    /**
+     * animates the coin once collected, jumps up then falls down
+     */
     public void animateCoin()
     {
         // Add your action code here.
@@ -54,23 +59,33 @@ public class Coin extends Actor
         
         getImage().setTransparency(currentTransparency);
     }
-    //function to keep track of coins saved(after portal) and current coins from the world
+    
+    /**
+     *function to keep track of coins saved(after portal) and current coins from the world
+     */
     public static void saveCoinCount(){
         previousCoins = numOfCoins;
     }
+    
     public static int savedCoins(){
         return previousCoins;
     }
+    
     public static int coinCount(){
         return numOfCoins;
     }
+    
     public static void reset(){
         numOfCoins = 0;
     }
+    
     public static void resetCheckpoint(){
         numOfCoins = previousCoins;
     }
-    //animate coin if collected
+    
+    /**
+     * once the coin is collected, this will animate the coin
+     */
     public void collect()
     {
         if(!collected)
@@ -80,13 +95,19 @@ public class Coin extends Actor
             getImage().setTransparency(255);
         }
     }
-    //add gravity to coin so it drops
+    
+    /**
+     * adds gravity to the coin so it drops in the animation
+     */
     private void applyGravity()
     {
         velocityY += gravity;
         setLocation(getX(), (int)(getY()+velocityY));
     }
-    //apply collection animation if collected
+    
+    /**
+     * when called, will apply the animation
+     */
     public void act()
     {
         animateCoin();

@@ -8,10 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class theVoid extends Actor
 {
-    //void class for out-of-bounds checking
     /**
-     * Act - do whatever the theVoid wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * constructor for void class
+     * color is red
+     * transparent
+     * used to check if players are out-of-bounds
      */
     public void act()
     {
@@ -19,6 +20,6 @@ public class theVoid extends Actor
         image.setColor(Color.RED);
         image.fill();
         setImage(image);
-        //getImage().setTransparency(0);
+        getImage().setTransparency(0);
     }
 }

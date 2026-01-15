@@ -8,6 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class SpawnPoint extends Actor
 {
+    /**
+     * constructor for a spawnpoint
+     * color is yellow
+     * invisible
+     */
     public SpawnPoint()
     {
         //spawn point for simple respawning

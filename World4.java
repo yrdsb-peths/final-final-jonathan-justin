@@ -117,7 +117,7 @@ public class World4 extends World
     }
     
     /**
-     * add top right island with the portal
+     * add bottom left island with the portal
      */
     private void cornerLand()
     {
@@ -275,7 +275,9 @@ public class World4 extends World
         for(int i = 0; i<2; i++) addObject(new platforms1(), 1496 + i*16, 552);
     }
     
-    //adds the final platform at the end (L - R)
+    /**
+     * add the final island where the player reaches the portal
+     */
     private void finalIsland()
     {
         addObject(new platforms1(), 1432, 264);
@@ -297,7 +299,7 @@ public class World4 extends World
     }
     
     /**
-     * add top side of the iceberg
+     * add top side of the iceberg above water level
      */
     private void icebergTop()
     {
@@ -325,7 +327,7 @@ public class World4 extends World
         }
     
     /**
-     * add the bottom side of the iceberg
+     * add the bottom side of the iceberg below water level
      */
     private void icebergBottom()
     {

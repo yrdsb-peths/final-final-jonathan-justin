@@ -8,6 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PauseOverlay extends Actor
 {
+    
+    /**
+     * constructor for the paused menu
+     * intentionally doesn't work as a joke
+     */
     public PauseOverlay()
     {
         GreenfootImage img = new GreenfootImage(400, 200);
@@ -20,7 +25,10 @@ public class PauseOverlay extends Actor
 
         setImage(img);
     }
-
+    
+    /**
+     * removes the popup menu on the next mouseclick
+     */
     public void act()
     {
         if (Greenfoot.mouseClicked(null))

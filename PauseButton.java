@@ -10,9 +10,17 @@ public class PauseButton extends Actor
 {
     //add "pause button" in the top left
     GreenfootImage pause = new GreenfootImage("pause.png");
+    
+    /**
+     * constructor for the pause button
+     */
     public PauseButton(){
         setImage(pause);
     }
+    
+    /**
+     * once clicked, a menu will pop up
+     */
     public void act()
     {
         if (Greenfoot.mouseClicked(this))

@@ -1,10 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Player here.
+ * Initializes Player and all Player interactions such as movement, collisions, 
+ * death, sounds, coins.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Justin Li and Jonathan Xu) 
+ * @version (14/1/26)
  */
 public class Player extends Actor
 {
@@ -18,27 +19,53 @@ public class Player extends Actor
     String facing = "right";
     SimpleTimer animationTimer = new SimpleTimer();
     
-    //all variables
+    /**
+     * all variables
+     */
+    
+    //coin variables
     int numOfCoins = 0;
-    static boolean isDying = false; 
+    
+    //sound variables
+    GreenfootSound deathSound = new GreenfootSound("death.mp3");
+    GreenfootSound jumpSound = new GreenfootSound("jump.mp3");
+    GreenfootSound coinSound = new GreenfootSound("coin.mp3");
+    
+    //death variables
+    static boolean isDying = false;
+    boolean dying = false;
+    SimpleTimer deathTimer = new SimpleTimer();
+    static final int DEATH_DELAY = 500;
+    int numOfDeaths = 0;
+    boolean deathSoundPlayed = false;
+
+    //animation variables
     int walkIndex = 0;
     int idleIndex = 0;
+    
+    //movement variables
     static final int GRAVITY = 1;
     static final int JUMP_FORCE = 11;
     int xSpeed = 3;
     int ySpeed = 0;
-    int numOfDeaths = 0;
-    boolean dying = false;
-    SimpleTimer deathTimer = new SimpleTimer();
-    static final int DEATH_DELAY = 500;
-    GreenfootImage[] idleDeadRight = new GreenfootImage[4];
-    GreenfootImage[] idleDeadLeft = new GreenfootImage[4];
     boolean touchingWater = false;
     boolean jumpKeyHeld = false;
     
-    //constructor for animation
+    //death images
+    GreenfootImage[] idleDeadRight = new GreenfootImage[4];
+    GreenfootImage[] idleDeadLeft = new GreenfootImage[4];
+    
+    /**
+     * Player constructor to attatch a player state to an image
+     */
     public Player()
-    {  
+    {
+        //set volume of sounds
+        jumpSound.setVolume(25);
+        coinSound.setVolume(45);
+        deathSound.setVolume(50);
+        
+        //set image states
         for(int i = 0; i < movePlayerRight.length; i++)
         {
             movePlayerRight[i] = new GreenfootImage("images/knight/knight" + i + ".png");
@@ -82,7 +109,9 @@ public class Player extends Actor
         setImage(idlePlayerRight[0]);
     }
     
-    //animate player based off of input
+    /**
+     * animates the player depending on player input
+     */
     public void animatePlayer()
     {
         if(animationTimer.millisElapsed()<100) return;
@@ -117,7 +146,9 @@ public class Player extends Actor
         }
     }
     
-    //move function for underwater
+    /**
+     * controls the swimming movement
+     */
     private void swimMove()
     {
         int speed = 1;
@@ -156,7 +187,9 @@ public class Player extends Actor
         while(isTouching(platforms1.class) ||isTouching(platforms2.class)) setLocation(getX(), getY() - dy);
     }
 
-    //horizontal movement function
+    /**
+     * controls horizontal player movement
+     */
     private void moveHorizontal()
     {
         int worldWidth = getWorld().getWidth();
@@ -180,7 +213,9 @@ public class Player extends Actor
         while(getOneIntersectingObject(platforms1.class) != null||getOneIntersectingObject(platforms2.class) != null) setLocation(getX() - dx, getY());
     }
     
-    //vertical movement function
+    /**
+     * controls vertical player movement
+     */
     private void moveVertically()
     {
         int worldHeight = getWorld().getHeight();
@@ -210,13 +245,15 @@ public class Player extends Actor
         if (onGround && jumpPressed && !jumpKeyHeld)
         {
             ySpeed = -JUMP_FORCE;
-            Greenfoot.playSound("jump.mp3");
+            jumpSound.play();
         }
 
         jumpKeyHeld = jumpPressed;
     }
     
-    //teleport to new world if touching a portal
+    /**
+     * teleports the player to the next world on collision
+     */
     public void teleport()
     {
         if(!isTouching(Portal.class)) return;
@@ -250,7 +287,10 @@ public class Player extends Actor
             Greenfoot.setWorld(new FinalWorld(player));
         }
     }
-    //teleport back to the spawn point if touching the void(not a death)
+    
+    /**
+     * teleports the player back to the starting point (spawn point) on collision
+     */
     private void checkVoid()
     {
         if(isTouching(theVoid.class))
@@ -262,26 +302,34 @@ public class Player extends Actor
         
     }
     
-    //collect coin if touching one
+    /**
+     * calls the collect() function from Coin class and plays a sound
+     */
     private void collectCoin()
     {
         Coin coin = (Coin) getOneIntersectingObject(Coin.class);
         if (coin != null)
         {
-            Greenfoot.playSound("coin.mp3");
+            coinSound.play();
             coin.collect();
         }
     }
     
-    //kill character if touching a spike
+    /**
+     * kills the player and subsequently teleports the player back to the starting
+     * point (spawn point) after 500ms
+     */
     private void checkSpike()
     {
         if(dying) return;
+        
         if(isTouching(Spike.class)||isTouching(SpikeR.class))
         {
             dying = true;
             deathTimer.mark();
             ySpeed = 0;
+            
+            deathSoundPlayed = false;
             
             int frame = (idleIndex - 1 + idleDeadRight.length) % idleDeadRight.length;
             
@@ -290,7 +338,9 @@ public class Player extends Actor
         }
     }
     
-    //change to swimming if character touching water
+    /**
+     * controls vertical movement to get out of water to prevent glitching
+     */
     private void checkWater()
     {
         boolean nowTouching = isTouching(Water.class);
@@ -299,21 +349,35 @@ public class Player extends Actor
         touchingWater = nowTouching;
     }
     
-    //check death status for other classes
+    /**
+     * returns if the player is dying/dead to other classes
+     */
     public static boolean getDeath(){
         return isDying;
     }
-    //animate character on death, reset coins and respawn on death
+    
+    /**
+     * reverts the coins back to the starting amount
+     * resets sprite from dead state to alive state
+     * teleports player back to starting point/spawn point after a short delay
+     */
     private void handleDeath()
     {
         if(!dying) {
             isDying = false;
             return;
         }
+        
         isDying = true;
+        
+        if(!deathSoundPlayed)
+        {
+            deathSound.play();
+            deathSoundPlayed = true;
+        }
+        
         numOfCoins = Coin.savedCoins();
         Coin.resetCheckpoint();
-        Greenfoot.playSound("death.mp3");
         if(deathTimer.millisElapsed() >= DEATH_DELAY)
         {
             SpawnPoint spawn = (SpawnPoint) getWorld().getObjects(SpawnPoint.class).get(0);
@@ -325,10 +389,12 @@ public class Player extends Actor
             walkIndex = 0;
             animationTimer.mark();
             numOfDeaths++;
+            
             if(facing.equals("right"))setImage(idlePlayerRight[0]);
             else setImage(idlePlayerLeft[0]);
         }
     }
+    
     public void act()
     {
         checkWater();

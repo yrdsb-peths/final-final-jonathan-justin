@@ -10,15 +10,12 @@ public class Spike extends Actor
 {
     //spike class
     GreenfootImage spike = new GreenfootImage("spike.png");
+    
+    /**
+     * constructor for a spike
+     * kills player
+     */
     public Spike(){
         setImage(spike);
-    }
-    /**
-     * Act - do whatever the Spike wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
-    {
-        // Add your action code here.
     }
 }

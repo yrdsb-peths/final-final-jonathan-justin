@@ -8,7 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class platforms2 extends Actor
 {
-    //16x8 slab platform
+    /**
+     * constructor for a 16x8 slab
+     * color is blue
+     * transparent
+     */
     public platforms2()
     {
         GreenfootImage image = new GreenfootImage(16, 8);

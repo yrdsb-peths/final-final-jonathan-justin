@@ -11,17 +11,13 @@ public class SpikeL extends Actor
     //spike facing left class
     GreenfootImage spike = new GreenfootImage("spike.png");
     
-    
+    /**
+     * constructor for SpikeL
+     * rotated 90 degrees to be on the left side facing right
+     * kills player
+     */
     public SpikeL(){
         setImage(spike);
         getImage().rotate(90);
-    }
-    /**
-     * Act - do whatever the SpikeL wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
-    {
-        // Add your action code here.
     }
 }
