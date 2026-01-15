@@ -46,7 +46,7 @@ public class FinalWorld extends World
         
         showText("Congratulations for beating the game!", 200, 30);
         showText("Stats: ", 200, 64);
-        showText("Coins Collected: " + numOfCoins + "/16", 200, 100);
+        showText("Coins Collected: " + numOfCoins + "/15", 200, 100);
         showText("Deaths: "+numOfDeaths, 200, 130);
     }
     
